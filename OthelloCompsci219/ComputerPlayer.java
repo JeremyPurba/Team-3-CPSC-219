@@ -54,18 +54,16 @@ public class ComputerPlayer {
 	      while (status == false) {
 	    	  setRandomCol () ;
 		      setRandomRow () ;
-	        status = gameBoard.checkAdjacentCells(row, col, computerColor);
-	        
-	        
-	      }
-
-	      if (gameBoard.flip(row, col, computerColor) == 0){
-	        
-	        status = false;
-	      }
-	      else {
-	        status = true;
-	      }
+		      
+	       if(gameBoard.checkAdjacentCells(row, col, computerColor) == true && (gameBoard.flip(row, col, computerColor) != 0)) {
+	    		   status = true ;
+	    	   }
+	       
+	       else {
+	    	   status = false ;
+	       }
+	     }
+	      
 
 	      return status;
 	}
