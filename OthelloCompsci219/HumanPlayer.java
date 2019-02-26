@@ -70,19 +70,14 @@ public class HumanPlayer {
     while (status == false) {
       row = GetAndValidateInputFromUser("Row: ");
       column = GetAndValidateInputFromUser("Column: ");
-      status = gameBoard.checkAdjacentCells(row, column, playerColor);
-      if (status == false){
-        System.out.println("Invalid move. Try again.");
+      if (gameBoard.checkAdjacentCells(row, column, playerColor) == true && gameBoard.flip(row, column, playerColor) != 0){
+        status = true;
       }
-    }
-
-    if (gameBoard.flip(row, column, playerColor) == 0){
-      System.out.println("You cannot place a piece here since you will not be overturning any of your opponent's game pieces.");
-      status = false;
-    }
-    else {
-      status = true;
-    }
+      else{
+        System.out.println("Invalid move. Try again.");
+        status = false;
+      }
+      }
 
     return status;
   }
