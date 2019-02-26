@@ -47,23 +47,29 @@ public class ComputerPlayer {
 	  */
 	
 	public boolean makeMove() {
-		  int flip_count = 0;
+		int flip_count = 0;
 	      boolean status = false;
 	      
+
 	      while (status == false) {
-	        	setRandomRow();
-	    		setRandomCol();
-	    		status = gameBoard.checkAdjacentCells(row, col, computerColor);
-	    
-	    		if(gameBoard.flip(row, col, computerColor) == 0){
-	    			status = false;
-	    		}else {
-	    			status = true;
-	    		}
-	      
-	    }
+	    	  setRandomCol () ;
+		      setRandomRow () ;
+	        status = gameBoard.checkAdjacentCells(row, col, computerColor);
+	        if (status == false){
+	        	setRandomCol () ;
+	  	      setRandomRow () ;
+	        }
+	      }
+
+	      if (gameBoard.flip(row, col, computerColor) == 0){
+	        
+	        status = false;
+	      }
+	      else {
+	        status = true;
+	      }
+
 	      return status;
 	}
-	
 }
 
