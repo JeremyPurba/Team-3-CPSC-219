@@ -10,6 +10,7 @@ A menu is the first thing you should see when running this program.
 
 All the classes for our Othello game for Demo 2 can be found in the "OthelloGUI" folder.
 In order to play the GUI version of the othello game, you will need to compile the OthelloConsoleGame and run this file as well. 
+Assure that a jar file for javaFX is within the same folder as this demo's files if required. 
 
 References: https://github.com/mvtran/Java-Othello-Console/tree/master/src/othello
 
