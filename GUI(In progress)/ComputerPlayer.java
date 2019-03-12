@@ -49,6 +49,11 @@ public class ComputerPlayer {
 	  */
 
 	public boolean makeMove() {
+		try{
+	        Thread.sleep(2000);
+	     }catch(InterruptedException e){
+
+	     }
 	      boolean status = false;
 
 	   if (gameBoard.checkForValidMove(computerColor) == true) 
