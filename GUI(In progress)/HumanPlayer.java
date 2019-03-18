@@ -3,6 +3,9 @@
 */
 import java.util.Scanner;
 
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+
 public class HumanPlayer {
 	  /*
 	  * Initializing instance variables.
@@ -61,24 +64,25 @@ public class HumanPlayer {
 	  * user to enter a legal move. Which row and column you wish to move to will be re-prompted.
 	  * @ return status - a variable associated with whether a move has successfully been made.
 	  */
-	  public boolean makeMove() {
+	  public boolean makeMove(int aRow, int aColumn, Label aMessage) {
 	    boolean status = false;
-	    int row = 0;
-	    int column = 0;
+	    int row = aRow;
+	    int column = aColumn;
 
         if (gameBoard.checkForValidMove(playerColor) == true) 
         {
-	    while (status == false) {
-	      row = GetAndValidateInputFromUser("Row: ");
-	      column = GetAndValidateInputFromUser("Column: ");
+//	    while (status == false) {
+//	      row = GetAndValidateInputFromUser("Row: ");
+//	      column = GetAndValidateInputFromUser("Column: ");
 	      if (gameBoard.checkAdjacentCells(row, column, playerColor) == true && gameBoard.flip(row, column, playerColor, false) != 0){
 	        status = true;
 	      }
 	      else{
-	        System.out.println("Invalid move. Try again.");
+//	        System.out.println("Invalid move. Try again.");
+	        aMessage.setText("Invalid move. Try again.");
 	        status = false;
 	      }
-	      }
+//	      }
         }
 
 	    return status;
