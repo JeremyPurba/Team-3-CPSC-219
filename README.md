@@ -12,6 +12,11 @@ All the classes for our Othello game for Demo 2 can be found in the "GUI(In Prog
 In order to play the GUI version of the othello game, you will need to compile the GameGUI and run this file as well. 
 Assure that a jar file for javaFX is within the same folder as this demo's files if required. Also, this class does not completely run properly in coordinace with the actual game logic. Since demo 1 however, we have fixed all our tedious, logic errors. In order to check those, please run the OthelloConsoleGame.java like you would in Demo 1. 
 
+All the classes for our Othello game for Demo 3 can be found in the "GUI(In Progress)" folder.
+In order to play the GUI version of the othello game, you will need to compile the GameGUI and run this file as well. 
+Assure that a jar file for javaFX is within the same folder as this demo's files if required. The GUI now runs in accordance with the logic of the game and displays everthing correctly. In order to compile the program, type in: javac -cp.:jrxrt.jar *.java .
+If you are compiling on a Linux/Mac type in: javac -cp .:jrxrt.jar *.java .
+
 References: 
 1. https://github.com/mvtran/Java-Othello-Console/tree/master/src/othello
 2. https://github.com/graysoncroom/Othello
