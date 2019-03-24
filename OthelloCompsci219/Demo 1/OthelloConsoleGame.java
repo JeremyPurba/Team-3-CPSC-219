@@ -1,3 +1,4 @@
+
 /*
 * Import necessary package(s)
 */
@@ -68,7 +69,8 @@ public class OthelloConsoleGame {
 	*/
 	public void playOthello() {
 		char choice = ' ';
-    Boolean move_status = false;
+    Boolean move_status_w = false;
+    Boolean move_status_b = false;
     HumanPlayer human_w = null;
     HumanPlayer human_b = null;
 		ComputerPlayer computer_b = null;
@@ -105,48 +107,60 @@ public class OthelloConsoleGame {
 
       if (choice == 'A'){
 				if (aTurn == Color.BLACK) {
-					move_status = human_b.makeMove();
+					move_status_b = false;
+					move_status_b = human_b.makeMove();
 				}
 				else {
-					move_status = human_w.makeMove();
+					move_status_w = false;
+					move_status_w = human_w.makeMove();
 				}
 			}
 			else {
 				if (aTurn == Color.BLACK) {
-					move_status = computer_b.makeMove();
+					move_status_b = false;
+					move_status_b = computer_b.makeMove();
 				}
 				else {
-					move_status = human_w.makeMove();
+					move_status_w = false;
+					move_status_w = human_w.makeMove();
 				}
 			}
 
-      checkIfWinner(move_status);
+      		checkIfWinner(move_status_w, move_status_b);
 			if (stateOfGame == stateOfGame.IN_PROGRESS) {
 				if (aTurn == Color.BLACK) {
+					if (move_status_b == false) {
+						System.out.println("No moves available for Black to make.");
+					}
 					aTurn = Color.WHITE;
 					System.out.println("White's Turn!");
 				}
 				else {
+					if (move_status_w == false) {
+						System.out.println("No moves available for White to make.");
+					}
+
 					aTurn = Color.BLACK;
 					System.out.println("Black's Turn!");
 				}
 			}
 
 		} while (stateOfGame == stateOfGame.IN_PROGRESS);
+		
 	}
 
 	/*
 	* Result of method: Checks to if there is a winner on the board. This is determined
 	* by the countBlack and countWhite methods defined in the GameBoard class. If the board
 	* is filled in completely and there is more black than white, black is the winner of the game
-	* and an approporiate message will be printed in the console. .
-	* On the contrary, if there is more white than black pieces, white is the winner and an approporiate
+	* and an appropriate message will be printed in the console.
+	* On the contrary, if there is more white than black pieces, white is the winner and an appropriate
 	* message will be printed in the console.
 	* Similarly, on the rare occasion that the same amount of pieces are black and white, the game is a draw
 	* and a message stating this will be printed.
 	*/
-	public void checkIfWinner(boolean aMoveStatus) {
-		if (aMoveStatus == false) {
+	public void checkIfWinner(boolean aMoveStatus_w, boolean aMoveStatus_b) {
+		if (aMoveStatus_w == false && aMoveStatus_b == false) {
 		if (gameBoard.countBlack() < gameBoard.countWhite()) {
 			stateOfGame = StateOfGame.WHITE_WINNER;
 			System.out.println("Congratulations, White! You have won this game!");
@@ -164,7 +178,7 @@ public class OthelloConsoleGame {
 	* Result of method: Places either a white or black gamepiece on the board.
 	* @param row - a value associated to a numbered row entered by the user of where the
 	* game piece should be placed.
-	* @param column - a value associated to a numbered column entered by the userf where the
+	* @param column - a value associated to a numbered column entered by the user where the
 	* game piece should be placed. .
 	*/
 	public void placeGamePiece(int row, int column, Color aColor) {
