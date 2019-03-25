@@ -17,6 +17,9 @@ In order to play the GUI version of the othello game, you will need to compile t
 Assure that a jar file for javaFX is within the same folder as this demo's files if required. The GUI now runs in accordance with the logic of the game and displays everthing correctly. In order to compile the program, type in: javac -cp.:jrxrt.jar *.java .
 If you are compiling on a Linux/Mac type in: javac -cp .:jrxrt.jar *.java .
 
+The fully functional console game is in the "OthelloCompsci219" folder and within the "Demo 1" folder.
+The fully functional GUI game is in the "GUI(In Progress)" folder.
+
 References: 
 1. https://github.com/mvtran/Java-Othello-Console/tree/master/src/othello
 2. https://github.com/graysoncroom/Othello
