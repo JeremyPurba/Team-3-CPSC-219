@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
+import javafx.scene.paint.*;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -49,7 +49,7 @@ public class GameGUI extends javafx.application.Application {
     private Label game_message;
 
     private Stage window;
-    private Scene startScene, gameScene;
+    private Scene gameScene;
     private OthelloPane othelloPane;
     private int NumOfHumanPlayers = 0;
     private int row = 0;
@@ -78,13 +78,13 @@ public class GameGUI extends javafx.application.Application {
 
         Button onePlayerButton = new Button("One Player");
         Button twoPlayerButton = new Button("Two Players");
-        twoPlayerButton.setTranslateX(400);
+        twoPlayerButton.setTranslateX(450);
         twoPlayerButton.setTranslateY(-24);
 
         root1.setAlignment(Pos.CENTER);
         root1.getChildren().addAll(gameTitle, playLabel, onePlayerButton, twoPlayerButton);
 
-        startScene = new Scene(root1, 700, 700);
+        Scene startScene = new Scene(root1, 700, 700);
 
 	    onePlayerButton.setOnAction(new EventHandler<ActionEvent>() {
 	    	@Override
@@ -110,7 +110,7 @@ public class GameGUI extends javafx.application.Application {
         //Game Board Window
         FlowPane root2 = new FlowPane(Orientation.VERTICAL);
         root2.setAlignment(Pos.TOP_CENTER);
-        gamETitle = TitleLabel(gamETitle, 40, true);
+        gamETitle = TitleLabel(gamETitle, 50, true);
 
         othelloPane = new OthelloPane(BOARD_SIZE, BOX_SIZE, FLIP_DURATION);
         othelloPane.setAlignment(Pos.TOP_CENTER);
@@ -119,7 +119,7 @@ public class GameGUI extends javafx.application.Application {
         game_message = new Label();
         game_message.setPrefWidth(600);
         game_message.setPrefHeight(50);
-        game_message.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+        game_message.setFont(Font.font("Arial", FontWeight.BOLD, 18));
 
         root2.getChildren().addAll(gamETitle, othelloPane, game_message);
         gameScene = new Scene(root2, 700, 700);
@@ -206,8 +206,10 @@ public class GameGUI extends javafx.application.Application {
 
             for (int i = 0; i < BOARD_SIZE; i++) {
                 for (int j = 0; j < BOARD_SIZE; j++) {
-                	 btn_text = "(" + i + "," + j + ")";
-                    Button box = new Button(btn_text);
+                	 //btn_text = "(" + i + "," + j + ")";
+                    Button box = new Button(/*btn_text*/);
+                    box.setMinWidth(boxSize);
+                    box.setMinHeight(boxSize);
                     box.setStyle("-fx-background-color: " + blankBackgroundInHex + ";");
                     /*button1.setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");*/
                     setBox(i, j, box);
@@ -287,6 +289,11 @@ public class GameGUI extends javafx.application.Application {
 				if (aTurn == TokenColor.BLACK) {
 					move_status_b = false;
 					move_status_b = human_b.makeMove(row, column, game_message);
+          try{
+               Thread.sleep(3000);
+            }catch(InterruptedException e){
+
+            }
 					othelloPane.UpdatePane(gameBoard);
 				}
 			}
