@@ -296,7 +296,7 @@ public class GameBoard {
           {
         	flips_e = 0;
             found = true;
-          }          
+          }
          }
 
          if (found == false) {
@@ -331,7 +331,7 @@ public class GameBoard {
            {
          	 flips_se = 0;
              found = true;
-           }           
+           }
           }
 
           if (found == false) {
@@ -361,7 +361,7 @@ public class GameBoard {
             {
               flips_s = 0;
               found = true;
-            }            
+            }
            }
 
            if (found == false) {
@@ -486,7 +486,7 @@ public class GameBoard {
          while (flips_ne > 0){
            flipRow = flipRow - 1;
            flipColumn = flipColumn + 1;
-           if (aTest == false) {           
+           if (aTest == false) {
         	   this.cell[flipRow][flipColumn].set(aTurn);
            }
            flips_ne--;
@@ -497,7 +497,7 @@ public class GameBoard {
          flipColumn = column;
          while (flips_e > 0){
            flipColumn = flipColumn + 1;
-           if (aTest == false) {           
+           if (aTest == false) {
         	   this.cell[row][flipColumn].set(aTurn);
            }
            flips_e--;
@@ -534,7 +534,7 @@ public class GameBoard {
           while (flips_sw > 0){
             flipRow = flipRow + 1;
             flipColumn = flipColumn - 1;
-            if (aTest == false) {            
+            if (aTest == false) {
             	this.cell[flipRow][flipColumn].set(aTurn);
             }
             flips_sw--;
@@ -556,7 +556,7 @@ public class GameBoard {
         flipColumn = column;
         flipRow = row;
         while (flips_nw > 0){
-          flipRow = flipRow - 1;        	
+          flipRow = flipRow - 1;
           flipColumn = flipColumn - 1;
           if (aTest == false) {
         	  this.cell[flipRow][flipColumn].set(aTurn);
@@ -571,7 +571,7 @@ public class GameBoard {
        return flip_count;
      }
 
-    
+
     public boolean checkForValidMove(Color aTurn)
     {
     	boolean status = false;
