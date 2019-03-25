@@ -21,6 +21,9 @@ The fully functional console game is in the "OthelloCompsci219" folder and withi
 The fully functional GUI game is in the "GUI(In Progress)" folder.
 We have created a JUnit test for our flipping logic when tokens are placed. This jUnit can be found in the "OthelloCompsci219" folder as well and is called "LogicTest.java". This jUnit tests the OthelloConsoleGame, however, since logic is the same in both the console game and the GUI version, this test can be slightly modified to fit the GUI version as well. When running this test, assure that the two jar files (hamcrest and junit) are saved within the same folder when running it. In order to compile the LogicTest.java type in: avac -cp .:junit-4.12.jar:hamcrest-core-1.3.jar LogicTest.java. In order to subsequently run the program, type in: java -cp .:junit-4.12.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore LogicTest.
 
+Cloning and Installing Instructions:
+Click the green button in the top right corner, and download as a zip file. Once downloaded, choose the ppropriate folder and compile and run as mentionned previously. 
+
 References: 
 1. https://github.com/mvtran/Java-Othello-Console/tree/master/src/othello
 2. https://github.com/graysoncroom/Othello
