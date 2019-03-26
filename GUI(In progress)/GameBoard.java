@@ -6,6 +6,9 @@ public class GameBoard {
     int numBlack;
     int numWhite;
 
+    /*
+    * Result of method: This method counts the number of black pieces on the board. 
+    */
     public int countBlack(){
         int blackCount = 0;
         for(int r = 0; r < ROW; r++){
@@ -17,7 +20,10 @@ public class GameBoard {
         }
         return blackCount;
     }
-
+    
+    /*
+    * Result of method: This method counts the number of white pieces on the board. 
+    */
     public int countWhite(){
         int whiteCount = 0;
         for(int r = 0; r < ROW; r++){
@@ -29,7 +35,10 @@ public class GameBoard {
         }
         return whiteCount;
     }
-
+    
+    /*
+    * Result of method: This method counts the number of black pieces on the board. This method draws the game board on the console. 
+    */
     public void draw(){
         System.out.print("    ");
         for(int c = 0; c < COLUMN; c++){
@@ -571,7 +580,11 @@ public class GameBoard {
        return flip_count;
      }
 
-    
+    /*
+    * Result of method: This method checks whether a move is valid when a button is clicked. 
+    * @param aTurn which is the color of the player whose turn it is. 
+    * @return status. Returns true if the clicked button is a valid movement for the color of the current player. 
+    */
     public boolean checkForValidMove(TokenColor aTurn)
     {
     	boolean status = false;
