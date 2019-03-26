@@ -289,11 +289,7 @@ public class GameGUI extends javafx.application.Application {
 				if (aTurn == TokenColor.BLACK) {
 					move_status_b = false;
 					move_status_b = human_b.makeMove(row, column, game_message);
-          try{
-               Thread.sleep(3000);
-            }catch(InterruptedException e){
-
-            }
+          
 					othelloPane.UpdatePane(gameBoard);
 				}
 			}
@@ -358,10 +354,7 @@ public class GameGUI extends javafx.application.Application {
 						else {
 							aTurn = TokenColor.WHITE;
 							game_message.setText("White's turn!");
-/*							try{
-						        Thread.sleep(2000);
-						     }catch(InterruptedException e){}
-*/
+
 							move_status_w = false;
 							move_status_w = computer_w.makeMove();
 							aTurn = TokenColor.BLACK;
