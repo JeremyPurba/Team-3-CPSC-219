@@ -4,7 +4,7 @@
 */
 import java.util.Random;
 
-public class ComputerPlayer {
+public class ComputerPlayer extends Thread{
 	
 
 	private TokenColor computerColor = TokenColor.BLANK;
@@ -48,8 +48,9 @@ public class ComputerPlayer {
 	  * Which row and column you wish to move to will be re-prompted.
 	  */
 
-	public boolean makeMove() {
-		
+	public boolean makeMove()  {
+		  
+	     
 	      boolean status = false;
 
 	   if (gameBoard.checkForValidMove(computerColor) == true) 
@@ -196,4 +197,63 @@ public class ComputerPlayer {
 	   }
 	  return status;
 	}
+	
+	/// Medium Level AI
+		public boolean makeMove2() {
+			try{Thread.sleep(2000);}catch(InterruptedException e){System.out.println(e);}
+		      boolean status = false;
+
+		   if (gameBoard.checkForValidMove(computerColor) == true)
+		   {
+		      while (status == false) {
+		    	  	setRandomRow();
+		    		setRandomCol();
+
+		    		//////////////////////////////////////////////////////////////////////////////////////
+
+		    		/// Random with most flipped pieces
+
+
+		    		if (gameBoard.checkAdjacentCells(row, col, computerColor) == true &&
+		    	    	gameBoard.flip(row, col, computerColor, false) != 0) {
+
+		    		int Aflip = 1 ;
+
+		    		while (gameBoard.checkAdjacentCells(row, col, computerColor) == true &&
+		    			gameBoard.flip(row, col, computerColor, false) > Aflip){
+		    	    Aflip = gameBoard.flip(row, col, computerColor, false) ;
+		    	   }
+		    		status = true ;
+		    		}
+		      } 
+		   }
+		  return status;
+		}
+		
+		
+		///Easy Level AI
+		public boolean makeMove3() {
+			try{Thread.sleep(2000);}catch(InterruptedException e){System.out.println(e);}
+		      boolean status = false;
+
+		   if (gameBoard.checkForValidMove(computerColor) == true)
+		   {
+		      while (status == false) {
+		    	  	setRandomRow();
+		    		setRandomCol();
+
+		    		//////////////////////////////////////////////////////////////////////////////////////
+
+		    		/// Random flip pieces
+
+
+		    		while (gameBoard.checkAdjacentCells(row, col, computerColor) == true &&
+		    	    	gameBoard.flip(row, col, computerColor, false) != 0) { 
+		    	   }
+		    		status = true ;
+		    		}
+		      } 
+		   
+		  return status;
+		}
 }
