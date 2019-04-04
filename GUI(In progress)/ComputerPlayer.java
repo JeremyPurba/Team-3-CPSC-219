@@ -4,8 +4,8 @@
 */
 import java.util.Random;
 
-public class ComputerPlayer {
-
+public class ComputerPlayer extends Thread{
+	
 
 	private TokenColor computerColor = TokenColor.BLANK;
 	private GameBoard gameBoard = null;
@@ -48,212 +48,213 @@ public class ComputerPlayer {
 	  * Which row and column you wish to move to will be re-prompted.
 	  */
 
-	/// Hard Level AI
-	public boolean makeMove() {
-		try{Thread.sleep(2000);}catch(InterruptedException e){System.out.println(e);}
-	      boolean status = false;
+			public boolean makeMove()  {
+					
+					
+			boolean status = false;
 
-	   if (gameBoard.checkForValidMove(computerColor) == true)
-	   {
-	      while (status == false) {
-	    	  	setRandomRow();
-	    		setRandomCol();
-
-	    		///CORNERS OP !!
-	    		if (gameBoard.checkAdjacentCells(0,0,computerColor)== true &&
-	    	    		gameBoard.flip(0,0, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-	    		else if (gameBoard.checkAdjacentCells(0, 7, computerColor)== true &&
-	    	    	    gameBoard.flip(0, 7, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-	    		else if (gameBoard.checkAdjacentCells(7, 0, computerColor)== true &&
-	    				gameBoard.flip(7, 0, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-	    		else if (gameBoard.checkAdjacentCells(7, 7, computerColor)== true &&
-	    				gameBoard.flip(7, 7, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-	    		///////////////////////////////////////////////////////////////////////////////////
-
-
-	    		/// Edges of Board & Priority
-	    		else if (gameBoard.checkAdjacentCells(1, 0, computerColor)== true &&
-	    				gameBoard.flip(1, 0, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-	    		else if (gameBoard.checkAdjacentCells(6, 0, computerColor)== true &&
-	    				gameBoard.flip(6, 0, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-	    		else if (gameBoard.checkAdjacentCells(1, 7, computerColor)== true &&
-	    				gameBoard.flip(1, 7, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-	    		else if (gameBoard.checkAdjacentCells(6, 7, computerColor)== true &&
-	    				gameBoard.flip(6, 7, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-
-	    		else if (gameBoard.checkAdjacentCells(0, 1, computerColor)== true &&
-	    				gameBoard.flip(0, 1, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-	    		else if (gameBoard.checkAdjacentCells(0, 2, computerColor)== true &&
-	    				gameBoard.flip(0, 2, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-	    		else if (gameBoard.checkAdjacentCells(0, 3, computerColor)== true &&
-	    				gameBoard.flip(0, 3, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-	    		else if (gameBoard.checkAdjacentCells(0, 4, computerColor)== true &&
-	    				gameBoard.flip(0, 4, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-	    		else if (gameBoard.checkAdjacentCells(0, 5, computerColor)== true &&
-	    				gameBoard.flip(0, 5, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-
-	    		else if (gameBoard.checkAdjacentCells(2, 0, computerColor)== true &&
-	    				gameBoard.flip(2, 0, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-	    		else if (gameBoard.checkAdjacentCells(3, 0, computerColor)== true &&
-	    				gameBoard.flip(4, 0, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-	    		else if (gameBoard.checkAdjacentCells(4, 0, computerColor)== true &&
-	    				gameBoard.flip(4, 0, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-	    		else if (gameBoard.checkAdjacentCells(5, 0, computerColor)== true &&
-	    				gameBoard.flip(5, 0, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-
-	    		else if (gameBoard.checkAdjacentCells(7, 1, computerColor)== true &&
-	    				gameBoard.flip(7, 1, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-	    		else if (gameBoard.checkAdjacentCells(7, 2, computerColor)== true &&
-	    				gameBoard.flip(7, 2, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-	    		else if (gameBoard.checkAdjacentCells(7, 3, computerColor)== true &&
-	    				gameBoard.flip(7, 3, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-	    		else if (gameBoard.checkAdjacentCells(7, 4, computerColor)== true &&
-	    				gameBoard.flip(7, 4, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-	    		else if (gameBoard.checkAdjacentCells(7, 5, computerColor)== true &&
-	    				gameBoard.flip(7, 5, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-	    		else if (gameBoard.checkAdjacentCells(7, 6, computerColor)== true &&
-	    				gameBoard.flip(7, 6, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-
-	    		else if (gameBoard.checkAdjacentCells(2, 7, computerColor)== true &&
-	    				gameBoard.flip(2, 7, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-	    		else if (gameBoard.checkAdjacentCells(3, 7, computerColor)== true &&
-	    				gameBoard.flip(3, 7, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-	    		else if (gameBoard.checkAdjacentCells(4, 7, computerColor)== true &&
-	    				gameBoard.flip(4, 7, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-	    		else if (gameBoard.checkAdjacentCells(5, 7, computerColor)== true &&
-	    				gameBoard.flip(5, 7, computerColor, false) != 0) {
-	    			status = true ;
-	    		}
-
-	    		//////////////////////////////////////////////////////////////////////////////////////
-
-	    		/// Random with most flipped pieces
-
-
-	    		else if (gameBoard.checkAdjacentCells(row, col, computerColor) == true &&
-	    	    	gameBoard.flip(row, col, computerColor, false) != 0) {
-
-	    		int Aflip = 1 ;
-
-	    		while (gameBoard.checkAdjacentCells(row, col, computerColor) == true &&
-	    			gameBoard.flip(row, col, computerColor, false) > Aflip){
-	    	    Aflip = gameBoard.flip(row, col, computerColor, false) ;
-	    	   }
-	    		status = true ;
-	    		}
-	      }
-	   }
-	  return status;
-	}
+			if (gameBoard.checkForValidMove(computerColor) == true) 
+			{
+					while (status == false) {
+							setRandomRow();
+						setRandomCol(); 
+						
+						///CORNERS OP !!
+						if (gameBoard.checkAdjacentCells(0,0,computerColor)== true && 
+									gameBoard.flip(0,0, computerColor, false) != 0) {
+							status = true ;
+						}
+						else if (gameBoard.checkAdjacentCells(0, 7, computerColor)== true &&
+										gameBoard.flip(0, 7, computerColor, false) != 0) {
+							status = true ;
+						}
+						else if (gameBoard.checkAdjacentCells(7, 0, computerColor)== true &&
+								gameBoard.flip(7, 0, computerColor, false) != 0) {
+							status = true ;
+						}
+						else if (gameBoard.checkAdjacentCells(7, 7, computerColor)== true &&
+								gameBoard.flip(7, 7, computerColor, false) != 0) {
+							status = true ;
+						}
+						///////////////////////////////////////////////////////////////////////////////////
+						
+						
+						/// Edges of Board & Priority
+						else if (gameBoard.checkAdjacentCells(1, 0, computerColor)== true &&
+								gameBoard.flip(1, 0, computerColor, false) != 0) {
+							status = true ;
+						}
+						else if (gameBoard.checkAdjacentCells(6, 0, computerColor)== true &&
+								gameBoard.flip(6, 0, computerColor, false) != 0) {
+							status = true ;
+						}
+						else if (gameBoard.checkAdjacentCells(1, 7, computerColor)== true &&
+								gameBoard.flip(1, 7, computerColor, false) != 0) {
+							status = true ;
+						}
+						else if (gameBoard.checkAdjacentCells(6, 7, computerColor)== true &&
+								gameBoard.flip(6, 7, computerColor, false) != 0) {
+							status = true ;
+						}
+						
+						else if (gameBoard.checkAdjacentCells(0, 1, computerColor)== true &&
+								gameBoard.flip(0, 1, computerColor, false) != 0) {
+							status = true ;
+						}
+						else if (gameBoard.checkAdjacentCells(0, 2, computerColor)== true &&
+								gameBoard.flip(0, 2, computerColor, false) != 0) {
+							status = true ;
+						}
+						else if (gameBoard.checkAdjacentCells(0, 3, computerColor)== true &&
+								gameBoard.flip(0, 3, computerColor, false) != 0) {
+							status = true ;
+						}
+						else if (gameBoard.checkAdjacentCells(0, 4, computerColor)== true &&
+								gameBoard.flip(0, 4, computerColor, false) != 0) {
+							status = true ;
+						}
+						else if (gameBoard.checkAdjacentCells(0, 5, computerColor)== true &&
+								gameBoard.flip(0, 5, computerColor, false) != 0) {
+							status = true ;
+						}
+						
+						else if (gameBoard.checkAdjacentCells(2, 0, computerColor)== true &&
+								gameBoard.flip(2, 0, computerColor, false) != 0) {
+							status = true ;
+						}
+						else if (gameBoard.checkAdjacentCells(3, 0, computerColor)== true &&
+								gameBoard.flip(4, 0, computerColor, false) != 0) {
+							status = true ;
+						}
+						else if (gameBoard.checkAdjacentCells(4, 0, computerColor)== true &&
+								gameBoard.flip(4, 0, computerColor, false) != 0) {
+							status = true ;
+						}
+						else if (gameBoard.checkAdjacentCells(5, 0, computerColor)== true &&
+								gameBoard.flip(5, 0, computerColor, false) != 0) {
+							status = true ;
+						}
+						
+						else if (gameBoard.checkAdjacentCells(7, 1, computerColor)== true &&
+								gameBoard.flip(7, 1, computerColor, false) != 0) {
+							status = true ;
+						}
+						else if (gameBoard.checkAdjacentCells(7, 2, computerColor)== true &&
+								gameBoard.flip(7, 2, computerColor, false) != 0) {
+							status = true ;
+						}
+						else if (gameBoard.checkAdjacentCells(7, 3, computerColor)== true &&
+								gameBoard.flip(7, 3, computerColor, false) != 0) {
+							status = true ;
+						}
+						else if (gameBoard.checkAdjacentCells(7, 4, computerColor)== true &&
+								gameBoard.flip(7, 4, computerColor, false) != 0) {
+							status = true ;
+						}
+						else if (gameBoard.checkAdjacentCells(7, 5, computerColor)== true &&
+								gameBoard.flip(7, 5, computerColor, false) != 0) {
+							status = true ;
+						}
+						else if (gameBoard.checkAdjacentCells(7, 6, computerColor)== true &&
+								gameBoard.flip(7, 6, computerColor, false) != 0) {
+							status = true ;
+						}
+						
+						else if (gameBoard.checkAdjacentCells(2, 7, computerColor)== true &&
+								gameBoard.flip(2, 7, computerColor, false) != 0) {
+							status = true ;
+						}
+						else if (gameBoard.checkAdjacentCells(3, 7, computerColor)== true &&
+								gameBoard.flip(3, 7, computerColor, false) != 0) {
+							status = true ;
+						}
+						else if (gameBoard.checkAdjacentCells(4, 7, computerColor)== true &&
+								gameBoard.flip(4, 7, computerColor, false) != 0) {
+							status = true ;
+						}
+						else if (gameBoard.checkAdjacentCells(5, 7, computerColor)== true &&
+								gameBoard.flip(5, 7, computerColor, false) != 0) {
+							status = true ;
+						}
+						
+						//////////////////////////////////////////////////////////////////////////////////////
+						
+						/// Random with most flipped pieces
+						
+						
+						else if (gameBoard.checkAdjacentCells(row, col, computerColor) == true && 
+								gameBoard.flip(row, col, computerColor, false) != 0) {
+							
+						int Aflip = 1 ;
+						
+						while (gameBoard.checkAdjacentCells(row, col, computerColor) == true &&
+							gameBoard.flip(row, col, computerColor, false) > Aflip){
+							Aflip = gameBoard.flip(row, col, computerColor, false) ;
+						}	
+						status = true ;
+						}
+					}
+			}
+			return status;
+		}
 	
 	/// Medium Level AI
-	public boolean makeMove2() {
-		try{Thread.sleep(2000);}catch(InterruptedException e){System.out.println(e);}
-	      boolean status = false;
+		public boolean makeMove2() {
+			///try{Thread.sleep(2000);}catch(InterruptedException e){System.out.println(e);}
+		      boolean status = false;
 
-	   if (gameBoard.checkForValidMove(computerColor) == true)
-	   {
-	      while (status == false) {
-	    	  	setRandomRow();
-	    		setRandomCol();
+		   if (gameBoard.checkForValidMove(computerColor) == true)
+		   {
+		      while (status == false) {
+		    	  	setRandomRow();
+		    		setRandomCol();
 
-	    		//////////////////////////////////////////////////////////////////////////////////////
+		    		//////////////////////////////////////////////////////////////////////////////////////
 
-	    		/// Random with most flipped pieces
-
-
-	    		if (gameBoard.checkAdjacentCells(row, col, computerColor) == true &&
-	    	    	gameBoard.flip(row, col, computerColor, false) != 0) {
-
-	    		int Aflip = 1 ;
-
-	    		while (gameBoard.checkAdjacentCells(row, col, computerColor) == true &&
-	    			gameBoard.flip(row, col, computerColor, false) > Aflip){
-	    	    Aflip = gameBoard.flip(row, col, computerColor, false) ;
-	    	   }
-	    		status = true ;
-	    		}
-	      } 
-	   }
-	  return status;
-	}
-	
-	
-	///Easy Level AI
-	public boolean makeMove3() {
-		try{Thread.sleep(2000);}catch(InterruptedException e){System.out.println(e);}
-	      boolean status = false;
-
-	   if (gameBoard.checkForValidMove(computerColor) == true)
-	   {
-	      while (status == false) {
-	    	  	setRandomRow();
-	    		setRandomCol();
-
-	    		//////////////////////////////////////////////////////////////////////////////////////
-
-	    		/// Random flip pieces
+		    		/// Random with most flipped pieces
 
 
-	    		while (gameBoard.checkAdjacentCells(row, col, computerColor) == true &&
-	    	    	gameBoard.flip(row, col, computerColor, false) != 0) { 
-	    	   }
-	    		status = true ;
-	    		}
-	      } 
-	   
-	  return status;
-	}
+		    		if (gameBoard.checkAdjacentCells(row, col, computerColor) == true &&
+		    	    	gameBoard.flip(row, col, computerColor, false) != 0) {
+
+		    		int Aflip = 1 ;
+
+		    		while (gameBoard.checkAdjacentCells(row, col, computerColor) == true &&
+		    			gameBoard.flip(row, col, computerColor, false) > Aflip){
+		    	    Aflip = gameBoard.flip(row, col, computerColor, false) ;
+		    	   }
+		    		status = true ;
+		    		}
+		      } 
+		   }
+		  return status;
+		}
+		
+		
+		///Easy Level AI
+		public boolean makeMove3() {
+			///try{Thread.sleep(2000);}catch(InterruptedException e){System.out.println(e);}
+			boolean status = false;
+
+			   if (gameBoard.checkForValidMove(computerColor) == true)
+			   {
+			      while (status == false) {
+			    	  	setRandomRow();
+			    		setRandomCol();
+
+			    		//////////////////////////////////////////////////////////////////////////////////////
+
+			    		/// Random with most flipped pieces
+
+
+			    		while (gameBoard.checkAdjacentCells(row, col, computerColor) == true &&
+			    	    	gameBoard.flip(row, col, computerColor, false) != 0) {
+
+			    		
+			    		status = true ;
+			    		}
+			      } 
+			   }
+			  return status;
+		}
 }

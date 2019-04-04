@@ -1,3 +1,4 @@
+
 public class GameBoard {
 
     GameCell[][] cell;
@@ -81,6 +82,16 @@ public class GameBoard {
             this.cell[4][3].set(TokenColor.WHITE);
             this.cell[4][4].set(TokenColor.BLACK);
             this.cell[3][4].set(TokenColor.WHITE);
+    }
+
+    public void clearCells(){
+      this.ROW = 8;
+      this.COLUMN = 8;
+      for(int r = 0; r < ROW; r++){
+          for(int c = 0; c < COLUMN; c++){
+              this.cell[r][c].set(TokenColor.BLANK);
+          }
+      }
     }
 
     /*

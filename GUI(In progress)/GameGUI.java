@@ -49,16 +49,19 @@ public class GameGUI extends javafx.application.Application {
     private Label game_message;
 
     private Stage window;
-    private Scene gameScene;
+	private Scene gameScene;
+	private Scene difficultyScene;
     private OthelloPane othelloPane;
     private int NumOfHumanPlayers = 0;
     private int row = 0;
     private int column = 0;
-	  private Boolean move_status_w = false;
-	  private Boolean move_status_b = false;
-	  private HumanPlayer human_w = null;
-	  private HumanPlayer human_b = null;
-	  private ComputerPlayer computer_w = null;
+	private Boolean move_status_w = false;
+	private Boolean move_status_b = false;
+	private HumanPlayer human_w = null;
+	private HumanPlayer human_b = null;
+	private ComputerPlayer computer_w = null;
+	public String difficult;
+	
 
 
     @Override
@@ -69,7 +72,10 @@ public class GameGUI extends javafx.application.Application {
         gameTitle = TitleLabel(gameTitle, 80, true);
 
         //Create game board
-        gameBoard = new GameBoard(number_of_rows, number_of_columns);
+		gameBoard = new GameBoard(number_of_rows, number_of_columns);
+		
+		Button homeButton = new Button("Title Screen");
+		homeButton.setTranslateX(500); homeButton.setTranslateY(-60);
 
         // startScene ------------------------------------------------------------------------------------------------
         Label playLabel = new Label("Select a Game Mode: ");
@@ -77,9 +83,9 @@ public class GameGUI extends javafx.application.Application {
         playLabel.setAlignment(Pos.CENTER);
 
         Button onePlayerButton = new Button("One Player");
-        Button twoPlayerButton = new Button("Two Players");
-        twoPlayerButton.setTranslateX(450);
-        twoPlayerButton.setTranslateY(-24);
+		Button twoPlayerButton = new Button("Two Players");
+		onePlayerButton.setTranslateY(10);
+        twoPlayerButton.setTranslateX(400); twoPlayerButton.setTranslateY(-20);
 
         root1.setAlignment(Pos.CENTER);
         root1.getChildren().addAll(gameTitle, playLabel, onePlayerButton, twoPlayerButton);
@@ -90,19 +96,24 @@ public class GameGUI extends javafx.application.Application {
 	    	@Override
 	        public void handle(ActionEvent event) {
 	        	NumOfHumanPlayers = 1;
-	    		human_b = new HumanPlayer(gameBoard, TokenColor.BLACK);
-	    		computer_w = new ComputerPlayer(gameBoard, TokenColor.WHITE);
-				window.setScene(gameScene);
+				window.setScene(difficultyScene);
 	        }
 	     });
 
 	    twoPlayerButton.setOnAction(new EventHandler<ActionEvent>() {
 	        @Override
 	        public void handle(ActionEvent event) {
+				difficult = "TWOPPL";
 	        	NumOfHumanPlayers = 2;
 	        	human_b = new HumanPlayer(gameBoard, TokenColor.BLACK);
 	        	human_w = new HumanPlayer(gameBoard, TokenColor.WHITE);
 				window.setScene(gameScene);
+
+				gameBoard.setStartingPositions();
+				stateOfGame = StateOfGame.IN_PROGRESS;
+				aTurn = TokenColor.BLACK;                  //Black starts first always
+				game_message.setText("Black's Turn");
+				othelloPane.UpdatePane(gameBoard);
 	        }
 	    });
 
@@ -121,21 +132,96 @@ public class GameGUI extends javafx.application.Application {
         game_message.setPrefHeight(50);
         game_message.setFont(Font.font("Arial", FontWeight.BOLD, 18));
 
-        root2.getChildren().addAll(gamETitle, othelloPane, game_message);
-        gameScene = new Scene(root2, 700, 700);
+        root2.getChildren().addAll(gamETitle, othelloPane, game_message, homeButton);
+		gameScene = new Scene(root2, 700, 700);
+		
+		homeButton.setOnAction(new EventHandler<ActionEvent>() {
+	    	@Override
+	        public void handle(ActionEvent event) {
+				othelloPane.clearBox();
+				othelloPane.UpdatePane(gameBoard);
+				window.setScene(startScene);
+	        }
+	     });
 
         //----------------------------------------------------------------------------------------------------------
+		//Difficulty selection scene
+        FlowPane root3 = new FlowPane(Orientation.VERTICAL);
+		root3.setAlignment(Pos.TOP_CENTER);
+		root3.setVgap(15);
+
+		Label gameTitleDiff = new Label(GAME_NAME);
+        gameTitleDiff = TitleLabel(gameTitleDiff, 50, true);
+		
+		Label diffMessage = new Label("Select a Difficulty Level: ");
+		diffMessage.setFont(new Font(50)); diffMessage.setAlignment(Pos.CENTER);
+
+		Button easyButton = new Button("Easy"); easyButton.setTranslateY(10);
+		
+		Button mediumButton = new Button("Medium"); mediumButton.setTranslateX(225); mediumButton.setTranslateY(-30);
+
+		Button hardButton = new Button("Hard"); hardButton.setTranslateX(450); hardButton.setTranslateY(-75);
+		
+		easyButton.setOnAction(new EventHandler<ActionEvent>() {
+	        @Override
+	        public void handle(ActionEvent event) {
+				difficult = "EASY";
+	    		human_b = new HumanPlayer(gameBoard, TokenColor.BLACK);
+	    		computer_w = new ComputerPlayer(gameBoard, TokenColor.WHITE);
+				window.setScene(gameScene);
+
+				gameBoard.setStartingPositions();
+				stateOfGame = StateOfGame.IN_PROGRESS;
+				aTurn = TokenColor.BLACK;                  //Black starts first always
+				game_message.setText("Black's Turn");
+				othelloPane.UpdatePane(gameBoard);
+	        }
+		});
+		
+		mediumButton.setOnAction(new EventHandler<ActionEvent>() {
+	        @Override
+	        public void handle(ActionEvent event) {
+				difficult = "MEDIUM";
+	    		human_b = new HumanPlayer(gameBoard, TokenColor.BLACK);
+	    		computer_w = new ComputerPlayer(gameBoard, TokenColor.WHITE);
+				window.setScene(gameScene);
+
+				gameBoard.setStartingPositions();
+				stateOfGame = StateOfGame.IN_PROGRESS;
+				aTurn = TokenColor.BLACK;                  //Black starts first always
+				game_message.setText("Black's Turn");
+				othelloPane.UpdatePane(gameBoard);
+	        }
+		});
+		
+		hardButton.setOnAction(new EventHandler<ActionEvent>() {
+	        @Override
+	        public void handle(ActionEvent event) {
+				difficult = "HARD";
+	    		human_b = new HumanPlayer(gameBoard, TokenColor.BLACK);
+	    		computer_w = new ComputerPlayer(gameBoard, TokenColor.WHITE);
+				window.setScene(gameScene);
+
+				gameBoard.setStartingPositions();
+				stateOfGame = StateOfGame.IN_PROGRESS;
+				aTurn = TokenColor.BLACK;                  //Black starts first always
+				game_message.setText("Black's Turn");
+				othelloPane.UpdatePane(gameBoard);
+	        }
+	    });
+        root3.getChildren().addAll(gameTitleDiff, diffMessage, easyButton, mediumButton, hardButton);
+        difficultyScene = new Scene(root3, 700, 700);
+		//-----------------------------------------------------------------------------------------------------------
 
         window.setTitle(GAME_NAME);
-        window.setScene(startScene);
-        window.show();
+		window.setScene(startScene);
+		
+		startScene.getStylesheets().add("GameStuff.css");
+		difficultyScene.getStylesheets().add("GameStuff.css");
 
-        gameBoard.setStartingPositions();
-        stateOfGame = StateOfGame.IN_PROGRESS;
-        aTurn = TokenColor.BLACK;                  //Black starts first always
-        game_message.setText("Black's Turn");
-        othelloPane.UpdatePane(gameBoard);
-    }
+        window.show();
+	}
+	
 
     /*
 	* Result of method: Checks to if there is a winner on the board. This is determined
@@ -235,45 +321,52 @@ public class GameGUI extends javafx.application.Application {
 	        	}
 	        	});
 
-        }
+		}
+		
+		public void clearBox(){
+			for (int i = 0; i < boardSize; i++) {
+				for (int j = 0; j < boardSize; j++) {
+					//boxes[i][j].
+					boxes[i][j].setStyle("-fx-background-color: " + blankBackgroundInHex + ";");
+				}
+			}
+		}
 
 
-	public void UpdatePane(GameBoard aGameBoard)
-	{
+	public void UpdatePane(GameBoard aGameBoard){
+    	Image image1 = new Image("white.png", 33, 33, false, false);
+    	Image image2 = new Image("black.png", 34, 34, false, false);
 
-
-    Image image1 = new Image("white.png", 33, 33, false, false);
-    Image image2 = new Image("black.png", 34, 34, false, false);
-
-	  TokenColor cellColor;
-	  for (int i = 0; i < boardSize; i++) {
-	     for (int j = 0; j < boardSize; j++) {
-               cellColor = gameBoard.getCellColor(i,j);
-               if (cellColor == TokenColor.BLANK) {
-                boxes[i][j].setStyle("-fx-background-color: " + blankBackgroundInHex + ";");
-               }
-               else if (cellColor == TokenColor.WHITE) {
-                 boxes[i][j].setText("");
-                 boxes[i][j].setGraphic(new ImageView(image1));
-                 //boxes[i][j].setStyle("-fx-background-color: " + whiteBackgroundInHex + ";");
-               }
-               else {
-                 boxes[i][j].setText("");
-                 boxes[i][j].setGraphic(new ImageView(image2));
-                 //boxes[i][j].setStyle("-fx-background-color: " + blackBackgroundInHex + ";");
-               }
-             }
+	  	TokenColor cellColor;
+	  	for (int i = 0; i < boardSize; i++) {
+	     	for (int j = 0; j < boardSize; j++) {
+				cellColor = gameBoard.getCellColor(i,j);
+				if (cellColor == TokenColor.BLANK) {
+					boxes[i][j].setStyle("-fx-background-color: " + blankBackgroundInHex + ";");
+				}
+				else if (cellColor == TokenColor.WHITE) {
+					boxes[i][j].setText("");
+					boxes[i][j].setGraphic(new ImageView(image1));
+					//boxes[i][j].setStyle("-fx-background-color: " + whiteBackgroundInHex + ";");
+				}
+				else {
+					boxes[i][j].setText("");
+					boxes[i][j].setGraphic(new ImageView(image2));
+					//boxes[i][j].setStyle("-fx-background-color: " + blackBackgroundInHex + ";");
+				}
+            }
 	    }
-	 }
-
-	 }
+	}
+	}
 
 
     public void playGame() {
 
-        	Boolean move_possible = gameBoard.checkForValidMove(aTurn);
-        	System.out.println("Move possible: " + move_possible);
-
+        Boolean move_possible = gameBoard.checkForValidMove(aTurn);
+		System.out.println("Move possible: " + move_possible);
+		
+		// Hard mode or two human players
+		if(difficult == "HARD" || difficult == "TWOPPL"){
         	if (NumOfHumanPlayers == 2){
 				if (aTurn == TokenColor.BLACK) {
 					move_status_b = false;
@@ -354,7 +447,6 @@ public class GameGUI extends javafx.application.Application {
 						else {
 							aTurn = TokenColor.WHITE;
 							game_message.setText("White's turn!");
-
 							move_status_w = false;
 							move_status_w = computer_w.makeMove();
 							aTurn = TokenColor.BLACK;
@@ -365,5 +457,98 @@ public class GameGUI extends javafx.application.Application {
 			}
 
 			othelloPane.UpdatePane(gameBoard);
-    	}
-  }
+		} else if(difficult == "MEDIUM"){ // Medium level AI
+			if (aTurn == TokenColor.BLACK) {
+				move_status_b = false;
+				move_status_b = human_b.makeMove(row, column, game_message);
+				othelloPane.UpdatePane(gameBoard);
+			}
+		
+
+        	if (move_possible == false) {
+        		checkIfWinner(move_status_w, move_status_b);
+        	}
+
+			if (stateOfGame == stateOfGame.IN_PROGRESS) {
+				if (aTurn == TokenColor.BLACK) {
+					if (move_status_b == false && move_possible == false) {
+						aTurn = TokenColor.WHITE;
+						Boolean move_possible_w = gameBoard.checkForValidMove(aTurn);
+						if (move_possible_w == true) {
+							game_message.setText("No moves available for Black to make. White's Turn!");
+							move_status_w = false;
+							move_status_w = computer_w.makeMove2();
+						}
+						else {
+							checkIfWinner(move_status_w, move_status_b);
+						}
+						if (move_status_w == true) {
+							aTurn = TokenColor.BLACK;
+							game_message.setText("Black's turn!");
+						}
+					}
+					else if (move_status_b == false && move_possible == true) {
+						aTurn = TokenColor.BLACK;
+						game_message.setText("Invalid move.  Black try again!");
+					}
+					else {
+						aTurn = TokenColor.WHITE;
+						game_message.setText("White's turn!");
+						move_status_w = false;
+						move_status_w = computer_w.makeMove2();
+						aTurn = TokenColor.BLACK;
+						game_message.setText("Black's turn!");
+					}
+				}
+				
+			}
+			othelloPane.UpdatePane(gameBoard);
+		} else{ // Easy level AI
+			if (aTurn == TokenColor.BLACK) {
+				move_status_b = false;
+				move_status_b = human_b.makeMove(row, column, game_message);
+				othelloPane.UpdatePane(gameBoard);
+			}
+		
+
+        	if (move_possible == false) {
+        		checkIfWinner(move_status_w, move_status_b);
+        	}
+
+			if (stateOfGame == stateOfGame.IN_PROGRESS) {
+				if (aTurn == TokenColor.BLACK) {
+					if (move_status_b == false && move_possible == false) {
+						aTurn = TokenColor.WHITE;
+						Boolean move_possible_w = gameBoard.checkForValidMove(aTurn);
+						if (move_possible_w == true) {
+							game_message.setText("No moves available for Black to make. White's Turn!");
+							move_status_w = false;
+							move_status_w = computer_w.makeMove3();
+						}
+						else {
+							checkIfWinner(move_status_w, move_status_b);
+						}
+						if (move_status_w == true) {
+							aTurn = TokenColor.BLACK;
+							game_message.setText("Black's turn!");
+						}
+					}
+					else if (move_status_b == false && move_possible == true) {
+						aTurn = TokenColor.BLACK;
+						game_message.setText("Invalid move.  Black try again!");
+					}
+					else {
+						aTurn = TokenColor.WHITE;
+						game_message.setText("White's turn!");
+						move_status_w = false;
+						move_status_w = computer_w.makeMove3();
+						aTurn = TokenColor.BLACK;
+						game_message.setText("Black's turn!");
+					}
+				}
+				
+			}
+			othelloPane.UpdatePane(gameBoard);
+		}
+	}
+}
