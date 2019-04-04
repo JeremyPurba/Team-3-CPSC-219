@@ -191,7 +191,7 @@ public class ComputerPlayer extends Thread{
 	    			gameBoard.flip(row, col, computerColor, false) > Aflip){
 	    	    Aflip = gameBoard.flip(row, col, computerColor, false) ;
 	    	   }	
-	    		status = true ;
+	    		
 	    		}
 	      }
 	   }
@@ -200,7 +200,7 @@ public class ComputerPlayer extends Thread{
 	
 	/// Medium Level AI
 		public boolean makeMove2() {
-			try{Thread.sleep(2000);}catch(InterruptedException e){System.out.println(e);}
+			///try{Thread.sleep(2000);}catch(InterruptedException e){System.out.println(e);}
 		      boolean status = false;
 
 		   if (gameBoard.checkForValidMove(computerColor) == true)
@@ -233,27 +233,28 @@ public class ComputerPlayer extends Thread{
 		
 		///Easy Level AI
 		public boolean makeMove3() {
-			try{Thread.sleep(2000);}catch(InterruptedException e){System.out.println(e);}
-		      boolean status = false;
+			///try{Thread.sleep(2000);}catch(InterruptedException e){System.out.println(e);}
+			boolean status = false;
 
-		   if (gameBoard.checkForValidMove(computerColor) == true)
-		   {
-		      while (status == false) {
-		    	  	setRandomRow();
-		    		setRandomCol();
+			   if (gameBoard.checkForValidMove(computerColor) == true)
+			   {
+			      while (status == false) {
+			    	  	setRandomRow();
+			    		setRandomCol();
 
-		    		//////////////////////////////////////////////////////////////////////////////////////
+			    		//////////////////////////////////////////////////////////////////////////////////////
 
-		    		/// Random flip pieces
+			    		/// Random with most flipped pieces
 
 
-		    		while (gameBoard.checkAdjacentCells(row, col, computerColor) == true &&
-		    	    	gameBoard.flip(row, col, computerColor, false) != 0) { 
-		    	   }
-		    		status = true ;
-		    		}
-		      } 
-		   
-		  return status;
+			    		while (gameBoard.checkAdjacentCells(row, col, computerColor) == true &&
+			    	    	gameBoard.flip(row, col, computerColor, false) != 0) {
+
+			    		
+			    		status = true ;
+			    		}
+			      } 
+			   }
+			  return status;
 		}
 }
