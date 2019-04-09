@@ -63,7 +63,13 @@ public class GameGUI extends javafx.application.Application {
         window = primaryStage;
 
         //Create game board
-        gameBoard = new GameBoard(number_of_rows, number_of_columns);
+		gameBoard = new GameBoard(number_of_rows, number_of_columns);
+
+		Button homeButton = new Button("Title Screen");
+		homeButton.setTranslateX(515); homeButton.setTranslateY(-50);
+
+		Button homeButton2 = new Button("Title Screen"); homeButton.setAlignment(Pos.BASELINE_RIGHT);
+		homeButton2.setTranslateX(427); homeButton2.setTranslateY(175);
         
         // startScene ------------------------------------------------------------------------------------------------
         FlowPane root1 = new FlowPane(Orientation.VERTICAL);
@@ -121,8 +127,23 @@ public class GameGUI extends javafx.application.Application {
         game_message.setFont(Font.font("Arial", FontWeight.BOLD, 18));
         game_message.setAlignment(Pos.BASELINE_CENTER); game_message.setTextFill(Paint.valueOf("#cecece"));
         
-        root2.getChildren().addAll(gamETitle, othelloPane, game_message);
-        gameScene = new Scene(root2, 700, 700);
+        root2.getChildren().addAll(gamETitle, othelloPane, game_message, homeButton);
+		gameScene = new Scene(root2, 700, 700);
+		
+		homeButton.setOnAction(new EventHandler<ActionEvent>() {
+	    	@Override
+	        public void handle(ActionEvent event) {
+				root2.getChildren().removeAll(gamETitle, othelloPane, game_message, homeButton);
+
+				gameBoard = new GameBoard(number_of_rows, number_of_columns);
+				othelloPane = new OthelloPane(BOARD_SIZE, BOX_SIZE, FLIP_DURATION);
+				othelloPane.setAlignment(Pos.TOP_CENTER);
+
+				root2.getChildren().addAll(gamETitle, othelloPane, game_message, homeButton);
+				othelloPane.UpdatePane(gameBoard);
+				window.setScene(startScene);
+	        }
+	    });
         
         //Difficulty selection scene--------------------------------------------------------------------------------
         FlowPane root3 = new FlowPane(Orientation.VERTICAL);
@@ -189,9 +210,24 @@ public class GameGUI extends javafx.application.Application {
 				game_message.setText("Black's Turn");
 				othelloPane.UpdatePane(gameBoard);
 	        }
-        });
+		});
+		
+		homeButton2.setOnAction(new EventHandler<ActionEvent>() {
+	    	@Override
+	        public void handle(ActionEvent event) {
+				root2.getChildren().removeAll(gamETitle, othelloPane, game_message, homeButton);
+
+				gameBoard = new GameBoard(number_of_rows, number_of_columns);
+				othelloPane = new OthelloPane(BOARD_SIZE, BOX_SIZE, FLIP_DURATION);
+				othelloPane.setAlignment(Pos.TOP_CENTER);
+
+				root2.getChildren().addAll(gamETitle, othelloPane, game_message, homeButton);
+				othelloPane.UpdatePane(gameBoard);
+				window.setScene(startScene);
+	        }
+	    });
         
-        root3.getChildren().addAll(gameTitleDiff, diffMessage, easyButton, mediumButton, hardButton);
+        root3.getChildren().addAll(gameTitleDiff, diffMessage, easyButton, mediumButton, hardButton, homeButton2);
         difficultyScene = new Scene(root3, 700, 700);
 
         //-----------------------------------------------------------------------------------------------------------
@@ -201,6 +237,8 @@ public class GameGUI extends javafx.application.Application {
 		startScene.getStylesheets().add("GameStuff.css"); startScene.getStylesheets().add("Background.css");
 		difficultyScene.getStylesheets().add("GameStuff.css"); difficultyScene.getStylesheets().add("Background.css");
 		gameScene.getStylesheets().add("Background.css");
+		homeButton.getStylesheets().add("GameStuff.css"); homeButton.setId("smallButton");
+		homeButton2.getStylesheets().add("GameStuff.css"); homeButton2.setId("smallButton");
 
         window.show();
     }
