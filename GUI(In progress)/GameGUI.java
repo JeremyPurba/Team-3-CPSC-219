@@ -20,6 +20,20 @@ import javafx.event.EventHandler;
  * Draws game board and takes clicks to progress gameplay
  * @author Team 3
  */
+
+/*
+* Result of enum: Determines the different states of the game at a given time
+* during the game.
+*/
+
+enum StateOfGame {
+  IN_PROGRESS, DRAW, BLACK_WINNER, WHITE_WINNER;
+}
+
+enum TokenColor {
+	BLACK, WHITE, BLANK;
+}
+
 public class GameGUI extends javafx.application.Application {
     //Create instances and initialize variables
     private StateOfGame stateOfGame;
