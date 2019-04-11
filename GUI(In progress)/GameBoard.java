@@ -114,7 +114,7 @@ public class GameBoard {
     }
 
     /*
-    * Note that this method is used only when playing the console version. ince in the GUI button, a button
+    * Note that this method is used only when playing the console version. Since in the GUI button, a button
     * must be clicked to play, and the buttons are within the game board only.
     * Result of method: The method is called to check if the row or column value entered by a player
     * is within the bounds of the game board.
