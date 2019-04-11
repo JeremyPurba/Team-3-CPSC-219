@@ -25,15 +25,21 @@ import javafx.event.EventHandler;
 * Result of enum: Determines the different states of the game at a given time
 * during the game.
 */
-
 enum StateOfGame {
   IN_PROGRESS, DRAW, BLACK_WINNER, WHITE_WINNER;
 }
 
+/**
+ * Enum to hold constant color values
+ */
 enum TokenColor {
 	BLACK, WHITE, BLANK;
 }
 
+/** 
+ * Class to create GUI and run game play
+ * @author Team 3
+*/
 public class GameGUI extends javafx.application.Application {
     //Create instances and initialize variables
     private StateOfGame stateOfGame;
@@ -82,8 +88,8 @@ public class GameGUI extends javafx.application.Application {
 		Button homeButton = new Button("Title Screen");
 		homeButton.setTranslateX(515); homeButton.setTranslateY(-50);
 
-		Button homeButton2 = new Button("Title Screen"); homeButton.setAlignment(Pos.BASELINE_RIGHT);
-		homeButton2.setTranslateX(427); homeButton2.setTranslateY(175);
+		// Button homeButton2 = new Button("Title Screen"); homeButton.setAlignment(Pos.BASELINE_RIGHT);
+		// homeButton2.setTranslateX(427); homeButton2.setTranslateY(175);
         
         // startScene ------------------------------------------------------------------------------------------------
         FlowPane root1 = new FlowPane(Orientation.VERTICAL);
@@ -99,7 +105,17 @@ public class GameGUI extends javafx.application.Application {
 	    	@Override
 	        public void handle(ActionEvent event) {
 	        	NumOfHumanPlayers = 1;
-				window.setScene(difficultyScene);
+				difficult = "HARD";
+	    		human_b = new HumanPlayer(gameBoard, TokenColor.BLACK);
+				computer_w = new ComputerPlayer(gameBoard, TokenColor.WHITE);
+				
+				window.setScene(gameScene);
+				gameBoard.setStartingPositions();
+				stateOfGame = StateOfGame.IN_PROGRESS;
+				aTurn = TokenColor.BLACK;                  //Black starts first always
+
+				game_message.setText("Black's Turn");
+				othelloPane.UpdatePane(gameBoard);
 	        }
 	    });
 
@@ -159,100 +175,100 @@ public class GameGUI extends javafx.application.Application {
 	        }
 	    });
         
-        //Difficulty selection scene--------------------------------------------------------------------------------
-        FlowPane root3 = new FlowPane(Orientation.VERTICAL);
-		root3.setAlignment(Pos.TOP_CENTER); root3.setVgap(15); root3.setId("pane");
+        // //Difficulty selection scene--------------------------------------------------------------------------------
+        // FlowPane root3 = new FlowPane(Orientation.VERTICAL);
+		// root3.setAlignment(Pos.TOP_CENTER); root3.setVgap(15); root3.setId("pane");
 
-        Label gameTitleDiff = new Label(GAME_NAME);
-        gameTitleDiff = TitleLabel(gameTitleDiff, 50, true);
+        // Label gameTitleDiff = new Label(GAME_NAME);
+        // gameTitleDiff = TitleLabel(gameTitleDiff, 50, true);
 
-        Label diffMessage = new Label("Select a Difficulty Level: "); diffMessage.setTextFill(Paint.valueOf("#cecece"));
-		diffMessage.setFont(new Font(40)); diffMessage.setAlignment(Pos.CENTER); diffMessage.setTranslateX(10);
+        // Label diffMessage = new Label("Select a Difficulty Level: "); diffMessage.setTextFill(Paint.valueOf("#cecece"));
+		// diffMessage.setFont(new Font(40)); diffMessage.setAlignment(Pos.CENTER); diffMessage.setTranslateX(10);
 
-        Button easyButton = new Button("  Easy  "); easyButton.setAlignment(Pos.TOP_CENTER);
-		easyButton.setTranslateX(170); easyButton.setTranslateY(15);
+        // Button easyButton = new Button("  Easy  "); easyButton.setAlignment(Pos.TOP_CENTER);
+		// easyButton.setTranslateX(170); easyButton.setTranslateY(15);
         
-        easyButton.setOnAction(new EventHandler<ActionEvent>() {
-	        @Override
-	        public void handle(ActionEvent event) {
-				difficult = "EASY";
-	    		human_b = new HumanPlayer(gameBoard, TokenColor.BLACK);
-	    		computer_w = new ComputerPlayer(gameBoard, TokenColor.WHITE);
-				window.setScene(gameScene);
+        // easyButton.setOnAction(new EventHandler<ActionEvent>() {
+	    //     @Override
+	    //     public void handle(ActionEvent event) {
+		// 		difficult = "EASY";
+	    // 		human_b = new HumanPlayer(gameBoard, TokenColor.BLACK);
+	    // 		computer_w = new ComputerPlayer(gameBoard, TokenColor.WHITE);
+		// 		window.setScene(gameScene);
 
-				gameBoard.setStartingPositions();
-				stateOfGame = StateOfGame.IN_PROGRESS;
-				aTurn = TokenColor.BLACK;                  //Black starts first always
-				game_message.setText("Black's Turn");
-				othelloPane.UpdatePane(gameBoard);
-	        }
-		});
+		// 		gameBoard.setStartingPositions();
+		// 		stateOfGame = StateOfGame.IN_PROGRESS;
+		// 		aTurn = TokenColor.BLACK;                  //Black starts first always
+		// 		game_message.setText("Black's Turn");
+		// 		othelloPane.UpdatePane(gameBoard);
+	    //     }
+		// });
 
-		Button mediumButton = new Button(" Normal "); mediumButton.setTranslateX(210); mediumButton.setAlignment(Pos.CENTER);
-		mediumButton.setTranslateX(163); mediumButton.setTranslateY(45);
+		// Button mediumButton = new Button(" Normal "); mediumButton.setTranslateX(210); mediumButton.setAlignment(Pos.CENTER);
+		// mediumButton.setTranslateX(163); mediumButton.setTranslateY(45);
 
-        mediumButton.setOnAction(new EventHandler<ActionEvent>() {
-	        @Override
-	        public void handle(ActionEvent event) {
-				difficult = "MEDIUM";
-	    		human_b = new HumanPlayer(gameBoard, TokenColor.BLACK);
-	    		computer_w = new ComputerPlayer(gameBoard, TokenColor.WHITE);
-				window.setScene(gameScene);
+        // mediumButton.setOnAction(new EventHandler<ActionEvent>() {
+	    //     @Override
+	    //     public void handle(ActionEvent event) {
+		// 		difficult = "MEDIUM";
+	    // 		human_b = new HumanPlayer(gameBoard, TokenColor.BLACK);
+	    // 		computer_w = new ComputerPlayer(gameBoard, TokenColor.WHITE);
+		// 		window.setScene(gameScene);
 
-				gameBoard.setStartingPositions();
-				stateOfGame = StateOfGame.IN_PROGRESS;
-				aTurn = TokenColor.BLACK;                  //Black starts first always
-				game_message.setText("Black's Turn");
-				othelloPane.UpdatePane(gameBoard);
-	        }
-        });
+		// 		gameBoard.setStartingPositions();
+		// 		stateOfGame = StateOfGame.IN_PROGRESS;
+		// 		aTurn = TokenColor.BLACK;                  //Black starts first always
+		// 		game_message.setText("Black's Turn");
+		// 		othelloPane.UpdatePane(gameBoard);
+	    //     }
+        // });
         
-		Button hardButton = new Button("  Hard  "); hardButton.setTranslateX(447); hardButton.setAlignment(Pos.BOTTOM_CENTER);
-		hardButton.setTranslateX(167); hardButton.setTranslateY(75);
+		// Button hardButton = new Button("  Hard  "); hardButton.setTranslateX(447); hardButton.setAlignment(Pos.BOTTOM_CENTER);
+		// hardButton.setTranslateX(167); hardButton.setTranslateY(75);
 
-        hardButton.setOnAction(new EventHandler<ActionEvent>() {
-	        @Override
-	        public void handle(ActionEvent event) {
-				difficult = "HARD";
-	    		human_b = new HumanPlayer(gameBoard, TokenColor.BLACK);
-	    		computer_w = new ComputerPlayer(gameBoard, TokenColor.WHITE);
-				window.setScene(gameScene);
+        // hardButton.setOnAction(new EventHandler<ActionEvent>() {
+	    //     @Override
+	    //     public void handle(ActionEvent event) {
+		// 		difficult = "HARD";
+	    // 		human_b = new HumanPlayer(gameBoard, TokenColor.BLACK);
+	    // 		computer_w = new ComputerPlayer(gameBoard, TokenColor.WHITE);
+		// 		window.setScene(gameScene);
 
-				gameBoard.setStartingPositions();
-				stateOfGame = StateOfGame.IN_PROGRESS;
-				aTurn = TokenColor.BLACK;                  //Black starts first always
-				game_message.setText("Black's Turn");
-				othelloPane.UpdatePane(gameBoard);
-	        }
-		});
+		// 		gameBoard.setStartingPositions();
+		// 		stateOfGame = StateOfGame.IN_PROGRESS;
+		// 		aTurn = TokenColor.BLACK;                  //Black starts first always
+		// 		game_message.setText("Black's Turn");
+		// 		othelloPane.UpdatePane(gameBoard);
+	    //     }
+		// });
 		
-		homeButton2.setOnAction(new EventHandler<ActionEvent>() {
-	    	@Override
-	        public void handle(ActionEvent event) {
-				root2.getChildren().removeAll(gamETitle, othelloPane, game_message, homeButton);
+		// homeButton2.setOnAction(new EventHandler<ActionEvent>() {
+	    // 	@Override
+	    //     public void handle(ActionEvent event) {
+		// 		root2.getChildren().removeAll(gamETitle, othelloPane, game_message, homeButton);
 
-				gameBoard = new GameBoard(number_of_rows, number_of_columns);
-				othelloPane = new OthelloPane(BOARD_SIZE, BOX_SIZE, FLIP_DURATION);
-				othelloPane.setAlignment(Pos.TOP_CENTER);
+		// 		gameBoard = new GameBoard(number_of_rows, number_of_columns);
+		// 		othelloPane = new OthelloPane(BOARD_SIZE, BOX_SIZE, FLIP_DURATION);
+		// 		othelloPane.setAlignment(Pos.TOP_CENTER);
 
-				root2.getChildren().addAll(gamETitle, othelloPane, game_message, homeButton);
-				othelloPane.UpdatePane(gameBoard);
-				window.setScene(startScene);
-	        }
-	    });
+		// 		root2.getChildren().addAll(gamETitle, othelloPane, game_message, homeButton);
+		// 		othelloPane.UpdatePane(gameBoard);
+		// 		window.setScene(startScene);
+	    //     }
+	    // });
         
-        root3.getChildren().addAll(gameTitleDiff, diffMessage, easyButton, mediumButton, hardButton, homeButton2);
-        difficultyScene = new Scene(root3, 700, 700);
+        // root3.getChildren().addAll(gameTitleDiff, diffMessage, easyButton, mediumButton, hardButton, homeButton2);
+        // difficultyScene = new Scene(root3, 700, 700);
 
         //-----------------------------------------------------------------------------------------------------------
         window.setTitle(GAME_NAME);
 		window.setScene(startScene);
 		
 		startScene.getStylesheets().add("GameStuff.css"); startScene.getStylesheets().add("Background.css");
-		difficultyScene.getStylesheets().add("GameStuff.css"); difficultyScene.getStylesheets().add("Background.css");
+		//difficultyScene.getStylesheets().add("GameStuff.css"); difficultyScene.getStylesheets().add("Background.css");
 		gameScene.getStylesheets().add("Background.css");
 		homeButton.getStylesheets().add("GameStuff.css"); homeButton.setId("smallButton");
-		homeButton2.getStylesheets().add("GameStuff.css"); homeButton2.setId("smallButton");
+		//homeButton2.getStylesheets().add("GameStuff.css"); homeButton2.setId("smallButton");
 
         window.show();
     }
