@@ -1,11 +1,18 @@
 public class GameBoard {
-
+    /*
+    * Initializing instance variables.
+    */
     GameCell[][] cell;
     int ROW;
     int COLUMN;
     int numBlack;
     int numWhite;
 
+    /*
+    * Result of method: This method counts the number of black pieces on the board at a certain point in time
+    * (when this method is called).
+    * @return - the integer of how many black pieces are on the board.
+    */
     public int countBlack(){
         int blackCount = 0;
         for(int r = 0; r < ROW; r++){
@@ -18,6 +25,11 @@ public class GameBoard {
         return blackCount;
     }
 
+    /*
+    * Result of method: This method counts the number of white pieces on the board at a certain point in time
+    * (when this method is called).
+    * @return - the integer of how many white pieces are on the board.
+    */
     public int countWhite(){
         int whiteCount = 0;
         for(int r = 0; r < ROW; r++){
@@ -30,6 +42,9 @@ public class GameBoard {
         return whiteCount;
     }
 
+    /*
+    * Result of method:  This method draws the game board on the console.
+    */
     public void draw(){
         System.out.print("    ");
         for(int c = 0; c < COLUMN; c++){
@@ -50,6 +65,13 @@ public class GameBoard {
         System.out.format("%nBlack: %d%nWhite: %d%n%n", numBlack, numWhite);
     }
 
+    /**
+    * A constructor which takes two parameters
+    * Result of method: Determines the dimensions of the board. It sets the input from user as the instance
+    * variables of ROW and COLUMN.
+    * @param row
+    * @param column
+    */
     public GameBoard(int row, int column){
         this.ROW = row;
         this.COLUMN = column;
@@ -75,8 +97,11 @@ public class GameBoard {
     }
 
     /*
+    * Note that this method is used only when playing the console version. ince in the GUI button, a button
+    * must be clicked to play, and the buttons are within the game board only.
     * Result of method: The method is called to check if the row or column value entered by a player
-    * is within the bounds of the game board
+    * is within the bounds of the game board.
+    * @param aRowColumn - an interger representing either the row or column of where the player wants to play.
     */
     public boolean checkWithinBoard(int aRowColumn){
       boolean withinBoard = true;
@@ -88,6 +113,14 @@ public class GameBoard {
       return withinBoard;
     }
 
+    /*
+    * Result of method: This method checks the cells adjacent to the token you or the computer placed in all 8 directions.
+    * If the adjacent cell is the opposite color of the piece being placed, a move is utimately valid and the status changes
+    * to true.
+    * @param aRow - row at which the user clicked the button.
+    * @param aColumn - column at which the user clicked the button.
+    * @return - status which is true if an adajacent cell in any which direction is of the opposite color.
+    */
     public boolean checkAdjacentCells(int aRow, int aColumn, Color aColor){
       boolean status = false;
       Color oppositeColor = Color.WHITE;
@@ -97,10 +130,9 @@ public class GameBoard {
       if (aColor == Color.WHITE){
         oppositeColor = Color.BLACK;
       }
-
       if (this.cell[aRow][aColumn].get() == Color.BLANK) {
 
-      //Check cell on the north cell
+      //Check adjacent cell in the north direction
         adj_cell_row = aRow - 1;
         adj_cell_col = aColumn;
         if (adj_cell_row >= 0){
@@ -108,66 +140,72 @@ public class GameBoard {
               status = true;
            }
         }
-        //Check cell on the northeast cell
-          adj_cell_row = aRow - 1;
-          adj_cell_col = aColumn + 1;
-          if (adj_cell_row >= 0 && adj_cell_col < COLUMN){
-             if (cell[adj_cell_row][adj_cell_col].get() == oppositeColor) {
-                status = true;
-             }
+        //Check adjacent cell in the northeast direction
+        adj_cell_row = aRow - 1;
+        adj_cell_col = aColumn + 1;
+        if (adj_cell_row >= 0 && adj_cell_col < COLUMN){
+          if (cell[adj_cell_row][adj_cell_col].get() == oppositeColor) {
+              status = true;
           }
-          //Check cell on the east cell
-            adj_cell_row = aRow;
-            adj_cell_col = aColumn + 1;
-            if (adj_cell_col < COLUMN){
-               if (cell[adj_cell_row][adj_cell_col].get() == oppositeColor) {
-                  status = true;
-               }
+        }
+        //Check adjacent cell in the east direction
+        adj_cell_row = aRow;
+        adj_cell_col = aColumn + 1;
+          if (adj_cell_col < COLUMN){
+            if (cell[adj_cell_row][adj_cell_col].get() == oppositeColor) {
+                status = true;
             }
-            //Check cell on the southeast cell
-              adj_cell_row = aRow + 1;
-              adj_cell_col = aColumn + 1;
-              if (adj_cell_row < ROW && adj_cell_col < COLUMN){
-                 if (cell[adj_cell_row][adj_cell_col].get() == oppositeColor) {
-                    status = true;
-                 }
+          }
+          //Check adjacent cell in the southeast direction
+          adj_cell_row = aRow + 1;
+          adj_cell_col = aColumn + 1;
+            if (adj_cell_row < ROW && adj_cell_col < COLUMN){
+              if (cell[adj_cell_row][adj_cell_col].get() == oppositeColor) {
+                  status = true;
               }
-              //Check cell on the south cell
-                adj_cell_row = aRow + 1;
-                adj_cell_col = aColumn;
-                if (adj_cell_row < ROW){
-                   if (cell[adj_cell_row][adj_cell_col].get() == oppositeColor) {
+            }
+            //Check adjacent cell in the south direction
+            adj_cell_row = aRow + 1;
+            adj_cell_col = aColumn;
+            if (adj_cell_row < ROW){
+              if (cell[adj_cell_row][adj_cell_col].get() == oppositeColor) {
+                status = true;
+              }
+            }
+            //Check adjacent cell in the southwest direction
+            adj_cell_row = aRow + 1;
+            adj_cell_col = aColumn - 1;
+              if (adj_cell_row < ROW && adj_cell_col >= 0){
+                  if (cell[adj_cell_row][adj_cell_col].get() == oppositeColor) {
                       status = true;
-                   }
-                }
-                //Check cell on the southwest cell
-                  adj_cell_row = aRow + 1;
-                  adj_cell_col = aColumn - 1;
-                  if (adj_cell_row < ROW && adj_cell_col >= 0){
-                     if (cell[adj_cell_row][adj_cell_col].get() == oppositeColor) {
-                        status = true;
-                     }
                   }
-                  //Check cell on the west cell
-                    adj_cell_row = aRow;
-                    adj_cell_col = aColumn - 1;
-                    if (adj_cell_col >= 0){
-                       if (cell[adj_cell_row][adj_cell_col].get() == oppositeColor) {
-                          status = true;
-                       }
+              }
+            //Check adjacent cell in the west direction
+            adj_cell_row = aRow;
+            adj_cell_col = aColumn - 1;
+              if (adj_cell_col >= 0){
+                  if (cell[adj_cell_row][adj_cell_col].get() == oppositeColor) {
+                      status = true;
+                  }
+              }
+            //Check adjacent cell in the northwest direction
+            adj_cell_row = aRow - 1;
+            adj_cell_col = aColumn - 1;
+              if (adj_cell_row >= 0 && adj_cell_col >= 0){
+                    if (cell[adj_cell_row][adj_cell_col].get() == oppositeColor) {
+                        status = true;
                     }
-                    //Check cell on the northwest cell
-                      adj_cell_row = aRow - 1;
-                      adj_cell_col = aColumn - 1;
-                      if (adj_cell_row >= 0 && adj_cell_col >= 0){
-                         if (cell[adj_cell_row][adj_cell_col].get() == oppositeColor) {
-                            status = true;
-                         }
-                      }
-                }
+              }
+          }
        return status;
     }
 
+    /*
+    * Result of method: This method check which token color is in a certain cell.
+    * @param aRow - row of cell which needs to be checked.
+    * @param aColumn - column of cell which needs to be checked.
+    * @return - color of the token in the cell.
+    */
     public Color getCellColor(int aRow, int aColumn){
       Color color = this.cell[aRow][aColumn].get();
       return color;
@@ -179,12 +217,12 @@ public class GameBoard {
     * the user places, affects the opposite game piece in any of these directions. If it does,
     * this method will also flip the pieces into the appropriate color until it meets with the aTurn(instance variable)'s color
     * while travelling along that specific direction.
-    * @ param row - a variable associated with the row number entered by the user, of which row
+    * @param row - a variable associated with the row number entered by the user, of which row
     * they wish to place their game piece.
-    *@ param column - a variable associated with the column number entered by the user, of which column
+    * @param column - a variable associated with the column number entered by the user, of which column
     * they wish to place their game piece.
-    @ param noFlip - a variable associated with the whether a flip has not been made.
-    * @ return flip_done - a varibale associated with whether flip(s) have been made in various directions.
+    * @param aTurn - a variable associated with the current player's token color.
+    * @return aTest - a varibale associated with whether flip(s) are able to happen in various directions.
     */
     public int flip(int row, int column, Color aTurn, boolean aTest) {
       int flip_count = 0;
@@ -207,14 +245,14 @@ public class GameBoard {
         opposite_color = Color.WHITE;
       }
 
-        /* Check to see if flipping in the north direction is possible.
-        * Row must be greater than the smallest row (1) in order for a flip to happen in
-        * the north direction since it has to be on the 8X8 board. The row above in the same
-        * column of where the game piece is placed must also have the opposite colour of the game piece being placed in order
-        * for a flip in this direction to actually happen.
-        * This method will flip each game piece in this direction until it meets with a piece
-        * of the same colour.
-        */
+      /* Check to see if flipping in the north direction is possible.
+      * Row must be greater than the smallest row (0) in order for a flip to happen in
+      * the north direction since it has to be on the 8X8 board. The row above in the same
+      * column of where the game piece is placed must also have the opposite colour of the game piece being placed in order
+      * for a flip in this direction to actually happen.
+      * This method will flip each game piece in this direction until it meets with a piece
+      * of the same colour.
+      */
         currentRow = row;
         found = false;
         while (currentRow > 0 && found == false) {
@@ -237,17 +275,17 @@ public class GameBoard {
            flips_n = 0;
          }
 
-       /* Check to see if flipping in the northeast direction is possible.
-       * Row must be greater than the smallest row (1) in order for a flip to happen in
-       * the northeast direction since it has to be on the 8X8 board. Column must also be
-       * smaller than the overall number of columns (8) in order for a flip to happen
-       * in the northeast direction since it also has to be on the 8X8 board.
-       * The row above in the same column to the right of where the game piece is placed must also have the
-       * opposite colour of the game piece being placed in order
-       * for a flip in this direction to actually happen.
-       * This method will flip each game piece in this direction until it meets with a piece
-       * of the same colour.
-       */
+         /* Check to see if flipping in the northeast direction is possible.
+         * Row must be greater than the smallest row (0) in order for a flip to happen in
+         * the northeast direction since it has to be on the 8X8 board. Column must also be
+         * smaller than the overall number of columns (7) in order for a flip to happen
+         * in the northeast direction since it also has to be on the 8X8 board.
+         * The row above in the same column to the right of where the game piece is placed must also have the
+         * opposite colour of the game piece being placed in order
+         * for a flip in this direction to actually happen.
+         * This method will flip each game piece in this direction until it meets with a piece
+         * of the same colour.
+         */
        currentRow = row;
        currentColumn = column;
        found = false;
@@ -273,7 +311,7 @@ public class GameBoard {
         }
 
         /* Check to see if flipping in the east direction is possible.
-        * Column must be smaller than the overall number of columns (8) minus 2 in order for a flip to happen
+        * Column must be smaller than the overall number of columns (8) minus 1 in order for a flip to happen
         * in the east direction since it has to be on the 8X8 board.
         * The column to the right in the same row of where the game piece is placed must also have the
         * opposite colour of the game piece being placed in order
@@ -304,9 +342,9 @@ public class GameBoard {
          }
 
          /* Check to see if flipping in the southeast direction is possible.
-         * Column must be smaller than the overall number of columns (8) minus 2 in order for a flip to happen
+         * Column must be smaller than the overall number of columns (8) minus 1 in order for a flip to happen
          * in the southeast direction since it has to be on the 8X8 board. Row must also
-         * be smaller than the overall number of rows (8) minus 2 in order for a flip to happen
+         * be smaller than the overall number of rows (8) minus 1 in order for a flip to happen
          * in the southeast direction since it also has to be on the 8X8 board.
          * The column to the right in the row below of where the game piece is placed must also have the
          * opposite colour of the game piece being placed in order
@@ -338,7 +376,7 @@ public class GameBoard {
             flips_se = 0;
           }
           /* Check to see if flipping in the south direction is possible.
-          * Row must be smaller than the overall number of rows (8) minus 2 in order for a flip to happen
+          * Row must be smaller than the overall number of rows (8) minus 1 in order for a flip to happen
           * in the south direction since it has to be on the 8X8 board.
           * The row below in the same column of where the game piece is placed must also have the
           * opposite colour of the game piece being placed in order
@@ -369,9 +407,9 @@ public class GameBoard {
            }
 
            /* Check to see if flipping in the southwest direction is possible.
-           * Row must be smaller than the overall number of rows (8) minus 2 in order for a flip to happen
+           * Row must be smaller than the overall number of rows (7) minus 1 in order for a flip to happen
            * in the southwest direction since it has to be on the 8X8 board.
-           * Column must be greater than the smallest column (1) in order for a flip to happen in
+           * Column must be greater than the smallest column (0) in order for a flip to happen in
            * the southwest direction since it also has to be on the 8X8 board.
            * The row below in the column to the left of where the game piece is placed must also have the
            * opposite colour of the game piece being placed in order
@@ -404,7 +442,7 @@ public class GameBoard {
             }
 
             /* Check to see if flipping in the west direction is possible.
-            * Column must be greater than the smallest column (1) in order for a flip to happen in
+            * Column must be greater than the smallest column (0) in order for a flip to happen in
             * the west direction since it has to be on the 8X8 board.
             * The column to the left in the same row of where the game piece is placed must also have the
             * opposite colour of the game piece being placed in order
@@ -434,9 +472,9 @@ public class GameBoard {
                flips_w = 0;
              }
              /* Check to see if flipping in the northwest direction is possible.
-             * Column must be greater than the smallest column (1) in order for a flip to happen in
+             * Column must be greater than the smallest column (0) in order for a flip to happen in
              * the northwest direction since it has to be on the 8X8 board.
-             * Row must also be greater than the smallest row (1) in order for a flip to happen in
+             * Row must also be greater than the smallest row (0) in order for a flip to happen in
              * the northwest direction since it also has to be on the 8X8 board.
              * The column to the left in the row above of where the game piece is placed must also have the
              * opposite colour of the game piece being placed in order
@@ -468,7 +506,7 @@ public class GameBoard {
                 flips_nw = 0;
               }
 
-       /* Code to start flipping is below */
+       /* Code to actually start flipping is below */
        /* Northern flips */
           flipRow = row;
           while (flips_n > 0){
@@ -571,7 +609,11 @@ public class GameBoard {
        return flip_count;
      }
 
-
+     /*
+     * Result of method: This method checks whether a move is possible in any direction for the aTurn tolen color.
+     * @param aTurn which is the color of the player whose turn it is.
+     * @return status. Returns true if the player has valid moves and his/her turn is possible.
+     */
     public boolean checkForValidMove(Color aTurn)
     {
     	boolean status = false;
