@@ -510,97 +510,97 @@ public class GameGUI extends javafx.application.Application {
 			}
 			othelloPane.UpdatePane(gameBoard);
         } 
-        else if(difficult == "MEDIUM"){ // Medium level AI ------------------------------------------------------------
-			if (aTurn == TokenColor.BLACK) {
-				move_status_b = false;
-				move_status_b = human_b.makeMove(row, column, game_message);
+        // else if(difficult == "MEDIUM"){ // Medium level AI ------------------------------------------------------------
+		// 	if (aTurn == TokenColor.BLACK) {
+		// 		move_status_b = false;
+		// 		move_status_b = human_b.makeMove(row, column, game_message);
           
-				othelloPane.UpdatePane(gameBoard);
-			}
+		// 		othelloPane.UpdatePane(gameBoard);
+		// 	}
 			
-        	if (move_possible == false) {
-        		checkIfWinner(move_status_w, move_status_b);
-        	}
+        // 	if (move_possible == false) {
+        // 		checkIfWinner(move_status_w, move_status_b);
+        // 	}
 
-			if (stateOfGame == stateOfGame.IN_PROGRESS) {
-				if (aTurn == TokenColor.BLACK) {
-					if (move_status_b == false && move_possible == false) {
-						aTurn = TokenColor.WHITE;
-						Boolean move_possible_w = gameBoard.checkForValidMove(aTurn);
-						if (move_possible_w == true) {
-							game_message.setText("No moves available for Black to make. White's Turn!");
-							move_status_w = false;
-							move_status_w = computer_w.makeMove2();
-						}
-						else {
-							checkIfWinner(move_status_w, move_status_b);
-						}
-						if (move_status_w == true) {
-							aTurn = TokenColor.BLACK;
-							game_message.setText("Black's turn!");
-						}
-					}
-					else if (move_status_b == false && move_possible == true) {
-						aTurn = TokenColor.BLACK;
-						game_message.setText("Invalid move.  Black try again!");
-					}
-					else {
-						aTurn = TokenColor.WHITE;
-						game_message.setText("White's turn!");
-						move_status_w = false;
-						move_status_w = computer_w.makeMove2();
-						aTurn = TokenColor.BLACK;
-						game_message.setText("Black's turn!");
-					}
+		// 	if (stateOfGame == stateOfGame.IN_PROGRESS) {
+		// 		if (aTurn == TokenColor.BLACK) {
+		// 			if (move_status_b == false && move_possible == false) {
+		// 				aTurn = TokenColor.WHITE;
+		// 				Boolean move_possible_w = gameBoard.checkForValidMove(aTurn);
+		// 				if (move_possible_w == true) {
+		// 					game_message.setText("No moves available for Black to make. White's Turn!");
+		// 					move_status_w = false;
+		// 					move_status_w = computer_w.makeMove2();
+		// 				}
+		// 				else {
+		// 					checkIfWinner(move_status_w, move_status_b);
+		// 				}
+		// 				if (move_status_w == true) {
+		// 					aTurn = TokenColor.BLACK;
+		// 					game_message.setText("Black's turn!");
+		// 				}
+		// 			}
+		// 			else if (move_status_b == false && move_possible == true) {
+		// 				aTurn = TokenColor.BLACK;
+		// 				game_message.setText("Invalid move.  Black try again!");
+		// 			}
+		// 			else {
+		// 				aTurn = TokenColor.WHITE;
+		// 				game_message.setText("White's turn!");
+		// 				move_status_w = false;
+		// 				move_status_w = computer_w.makeMove2();
+		// 				aTurn = TokenColor.BLACK;
+		// 				game_message.setText("Black's turn!");
+		// 			}
 				
-				}
-			}
-            othelloPane.UpdatePane(gameBoard);
-		} else{ // Easy level AI -----------------------------------------------------------------
-			if (aTurn == TokenColor.BLACK) {
-				move_status_b = false;
-				move_status_b = human_b.makeMove(row, column, game_message);
+		// 		}
+		// 	}
+        //     othelloPane.UpdatePane(gameBoard);
+		// } else{ // Easy level AI -----------------------------------------------------------------
+		// 	if (aTurn == TokenColor.BLACK) {
+		// 		move_status_b = false;
+		// 		move_status_b = human_b.makeMove(row, column, game_message);
           
-				othelloPane.UpdatePane(gameBoard);
-			}
+		// 		othelloPane.UpdatePane(gameBoard);
+		// 	}
 			
-        	if (move_possible == false) {
-        		checkIfWinner(move_status_w, move_status_b);
-        	}
+        // 	if (move_possible == false) {
+        // 		checkIfWinner(move_status_w, move_status_b);
+        // 	}
 
-			if (stateOfGame == stateOfGame.IN_PROGRESS) {
-				if (aTurn == TokenColor.BLACK) {
-					if (move_status_b == false && move_possible == false) {
-						aTurn = TokenColor.WHITE;
-						Boolean move_possible_w = gameBoard.checkForValidMove(aTurn);
-						if (move_possible_w == true) {
-							game_message.setText("No moves available for Black to make. White's Turn!");
-							move_status_w = false;
-							move_status_w = computer_w.makeMove3();
-						}
-						else {
-							checkIfWinner(move_status_w, move_status_b);
-						}
-						if (move_status_w == true) {
-							aTurn = TokenColor.BLACK;
-							game_message.setText("Black's turn!");
-						}
-					}
-					else if (move_status_b == false && move_possible == true) {
-						aTurn = TokenColor.BLACK;
-						game_message.setText("Invalid move.  Black try again!");
-					}
-					else {
-						aTurn = TokenColor.WHITE;
-						game_message.setText("White's turn!");
-						move_status_w = false;
-						move_status_w = computer_w.makeMove3();
-						aTurn = TokenColor.BLACK;
-						game_message.setText("Black's turn!");
-					}
-				}
-			}
-            othelloPane.UpdatePane(gameBoard);
-		}
+		// 	if (stateOfGame == stateOfGame.IN_PROGRESS) {
+		// 		if (aTurn == TokenColor.BLACK) {
+		// 			if (move_status_b == false && move_possible == false) {
+		// 				aTurn = TokenColor.WHITE;
+		// 				Boolean move_possible_w = gameBoard.checkForValidMove(aTurn);
+		// 				if (move_possible_w == true) {
+		// 					game_message.setText("No moves available for Black to make. White's Turn!");
+		// 					move_status_w = false;
+		// 					move_status_w = computer_w.makeMove3();
+		// 				}
+		// 				else {
+		// 					checkIfWinner(move_status_w, move_status_b);
+		// 				}
+		// 				if (move_status_w == true) {
+		// 					aTurn = TokenColor.BLACK;
+		// 					game_message.setText("Black's turn!");
+		// 				}
+		// 			}
+		// 			else if (move_status_b == false && move_possible == true) {
+		// 				aTurn = TokenColor.BLACK;
+		// 				game_message.setText("Invalid move.  Black try again!");
+		// 			}
+		// 			else {
+		// 				aTurn = TokenColor.WHITE;
+		// 				game_message.setText("White's turn!");
+		// 				move_status_w = false;
+		// 				move_status_w = computer_w.makeMove3();
+		// 				aTurn = TokenColor.BLACK;
+		// 				game_message.setText("Black's turn!");
+		// 			}
+		// 		}
+		// 	}
+        //     othelloPane.UpdatePane(gameBoard);
+		// }
 	}
 }
