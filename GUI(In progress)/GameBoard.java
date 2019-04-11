@@ -114,10 +114,11 @@ public class GameBoard {
     }
 
     /*
-    * Note that this method is used only when playing the console version. Since in the GUI button, a button
+    * Note that this method is used only when playing the console version. ince in the GUI button, a button
     * must be clicked to play, and the buttons are within the game board only.
     * Result of method: The method is called to check if the row or column value entered by a player
     * is within the bounds of the game board.
+    * @param aRowColumn - an interger representing either the row or column of where the player wants to play.
     */
     public boolean checkWithinBoard(int aRowColumn){
       boolean withinBoard = true;
@@ -329,7 +330,7 @@ public class GameBoard {
         }
 
         /* Check to see if flipping in the east direction is possible.
-        * Column must be smaller than the overall number of columns (7) minus 1 in order for a flip to happen
+        * Column must be smaller than the overall number of columns (8) minus 1 in order for a flip to happen
         * in the east direction since it has to be on the 8X8 board.
         * The column to the right in the same row of where the game piece is placed must also have the
         * opposite colour of the game piece being placed in order
@@ -360,9 +361,9 @@ public class GameBoard {
          }
 
          /* Check to see if flipping in the southeast direction is possible.
-         * Column must be smaller than the overall number of columns (7) minus 1 in order for a flip to happen
+         * Column must be smaller than the overall number of columns (8) minus 1 in order for a flip to happen
          * in the southeast direction since it has to be on the 8X8 board. Row must also
-         * be smaller than the overall number of rows (7) minus 1 in order for a flip to happen
+         * be smaller than the overall number of rows (8) minus 1 in order for a flip to happen
          * in the southeast direction since it also has to be on the 8X8 board.
          * The column to the right in the row below of where the game piece is placed must also have the
          * opposite colour of the game piece being placed in order
@@ -394,7 +395,7 @@ public class GameBoard {
             flips_se = 0;
           }
           /* Check to see if flipping in the south direction is possible.
-          * Row must be smaller than the overall number of rows (7) minus 1 in order for a flip to happen
+          * Row must be smaller than the overall number of rows (8) minus 1 in order for a flip to happen
           * in the south direction since it has to be on the 8X8 board.
           * The row below in the same column of where the game piece is placed must also have the
           * opposite colour of the game piece being placed in order
@@ -627,11 +628,11 @@ public class GameBoard {
        return flip_count;
      }
 
-    /*
-    * Result of method: This method checks whether a move is valid when a button is clicked.
-    * @param aTurn which is the color of the player whose turn it is.
-    * @return status. Returns true if the clicked button is a valid movement for the color of the current player.
-    */
+     /*
+     * Result of method: This method checks whether a move is possible in any direction for the aTurn tolen color.
+     * @param aTurn which is the color of the player whose turn it is.
+     * @return status. Returns true if the player has valid moves and his/her turn is possible.
+     */
     public boolean checkForValidMove(TokenColor aTurn)
     {
     	boolean status = false;
