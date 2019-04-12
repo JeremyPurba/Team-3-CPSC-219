@@ -603,4 +603,8 @@ public class GameGUI extends javafx.application.Application {
         //     othelloPane.UpdatePane(gameBoard);
 		// }
 	}
+	
+	public static void main(String[] args) {
+		launch(args);
+	}
 }
