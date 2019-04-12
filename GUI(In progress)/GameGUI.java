@@ -18,21 +18,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.event.EventHandler;
 
-/*
-* Result of enum: Determines the different states of the game at a given time
-* during the game.
-*/
-enum StateOfGame {
-  IN_PROGRESS, DRAW, BLACK_WINNER, WHITE_WINNER;
-}
-
-/**
- * Enum to hold constant color values
- */
-enum TokenColor {
-	BLACK, WHITE, BLANK;
-}
-
 /**
  * Class to create Graphical User Interface in place of OthelloConsoleGame
  * Draws game board and takes clicks to progress gameplay
