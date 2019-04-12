@@ -7,13 +7,13 @@ import java.util.Random;
 public class ComputerPlayer {
 
 
-	private TokenColor computerColor = TokenColor.BLANK;
+	private Color computerColor = Color.BLANK;
 	private GameBoard gameBoard = null;
 	private int col ;
 	private int row ;
 
 
-	public ComputerPlayer(GameBoard aGameBoard, TokenColor aColor){
+	public ComputerPlayer(GameBoard aGameBoard, Color aColor){
 	    gameBoard = aGameBoard;
 	    computerColor = aColor;
 	}
