@@ -82,3 +82,4 @@ public class HumanPlayer {
 
 	    return status;
 	  }
+}
