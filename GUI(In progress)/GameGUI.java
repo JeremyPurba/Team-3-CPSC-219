@@ -1,3 +1,6 @@
+/**
+ * import necessary packages
+ */
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
@@ -15,12 +18,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.event.EventHandler;
 
-/**
- * Class to create Graphical User Interface in place of OthelloConsoleGame
- * Draws game board and takes clicks to progress gameplay
- * @author Team 3
- */
-
 /*
 * Result of enum: Determines the different states of the game at a given time
 * during the game.
@@ -36,10 +33,11 @@ enum TokenColor {
 	BLACK, WHITE, BLANK;
 }
 
-/** 
- * Class to create GUI and run game play
+/**
+ * Class to create Graphical User Interface in place of OthelloConsoleGame
+ * Draws game board and takes clicks to progress gameplay
  * @author Team 3
-*/
+ */
 public class GameGUI extends javafx.application.Application {
     //Create instances and initialize variables
     private StateOfGame stateOfGame;
@@ -74,8 +72,8 @@ public class GameGUI extends javafx.application.Application {
     public String difficult;
     
     /**
-     * Start method with multiple different stages and buttons to navigate
-     * to gameplay screen
+     * Result of method: Create and display multiple scenes based on which buttons
+	 * are clicked. Also to display gameboard and take clicks.
      * @param primaryStage of type Stage
      */
     @Override
@@ -88,6 +86,7 @@ public class GameGUI extends javafx.application.Application {
 		Button homeButton = new Button("Title Screen");
 		homeButton.setTranslateX(515); homeButton.setTranslateY(-50);
 
+		// Commented out as we removed different difficulties due to bugs
 		// Button homeButton2 = new Button("Title Screen"); homeButton.setAlignment(Pos.BASELINE_RIGHT);
 		// homeButton2.setTranslateX(427); homeButton2.setTranslateY(175);
         
@@ -174,7 +173,8 @@ public class GameGUI extends javafx.application.Application {
 				window.setScene(startScene);
 	        }
 	    });
-        
+		
+		// Commented out as we removed different difficulties due to bugs
         // //Difficulty selection scene--------------------------------------------------------------------------------
         // FlowPane root3 = new FlowPane(Orientation.VERTICAL);
 		// root3.setAlignment(Pos.TOP_CENTER); root3.setVgap(15); root3.setId("pane");
@@ -265,16 +265,18 @@ public class GameGUI extends javafx.application.Application {
 		window.setScene(startScene);
 		
 		startScene.getStylesheets().add("GameStuff.css"); startScene.getStylesheets().add("Background.css");
+		// Commented out as we removed different difficulties due to bugs
 		//difficultyScene.getStylesheets().add("GameStuff.css"); difficultyScene.getStylesheets().add("Background.css");
 		gameScene.getStylesheets().add("Background.css");
 		homeButton.getStylesheets().add("GameStuff.css"); homeButton.setId("smallButton");
+		// Commented out as we removed different difficulties due to bugs
 		//homeButton2.getStylesheets().add("GameStuff.css"); homeButton2.setId("smallButton");
 
         window.show();
     }
 
     /**
-     * Method to edit multiple titles (which are labels) to a specific way
+     * Result of method: format title labels to a specific way based on parameters
      * @param name of label to edit
      * @param size of type int to set font size
      * @param bold of type boolean of if to bold or not bold the text
@@ -332,7 +334,11 @@ public class GameGUI extends javafx.application.Application {
         private Button[][] boxes;
 
         /**
-         * Constructor to set up grid coordinates as buttons (3D array)
+         * Result of constructor: set up coordinate pane for gameboard (as a 3D array)
+		 * and make each coordinate a button and display in start method.
+		 * @param boardSize of type int
+		 * @param boxSize of type int
+		 * @param flipDuration of type double
          */
         public OthelloPane(int boardSize, int boxSize, double flipDuration) {
             super();
@@ -365,7 +371,9 @@ public class GameGUI extends javafx.application.Application {
         }
 
         /**
-         * Method to read which box coordinate was clicked in game
+         * Result of method: gets row and column coordinate for button clicked
+		 * by user. Coordinates then played through play game where 
+		 * valid clicks are checked.
          * @param aRow of type int
          * @param aColumn of type int
          * @param box of type button
@@ -384,7 +392,7 @@ public class GameGUI extends javafx.application.Application {
         }
         
         /**
-         * Method to set certain coordinates (boxes) on the board to either
+         * Result of method: set certain coordinates (boxes) on the board to either
          * the blank board color, or the black/white game token
          * @param aGameBoard that is being played on
          */
@@ -412,15 +420,17 @@ public class GameGUI extends javafx.application.Application {
     }
 
     /**
-     * Method to run actual game play. Waits for user(s) to make moves and get clicks.
-     * Also runs player vs computer games.
-     */
+	 * Result of method: Used to run game. Checks for number of human players then correctly
+	 * prompts user(s) for inputs when its their respective turn. The move entered then goes
+	 * through a series of checks to ensure it is a valid move before updating the gameboard.
+	 */
     public void playGame() {
         Boolean move_possible = gameBoard.checkForValidMove(aTurn);
 		System.out.println("Move possible: " + move_possible);
 		
 		// Hard mode or two human players ---------------------------------------------------------------------------
 		if(difficult == "HARD" || difficult == "TWOPPL"){
+			// Two player game
         	if (NumOfHumanPlayers == 2){
 				if (aTurn == TokenColor.BLACK) {
 					move_status_b = false;
@@ -475,6 +485,7 @@ public class GameGUI extends javafx.application.Application {
 						}
 					}
 				}
+				//One player game
 				else {
 					if (aTurn == TokenColor.BLACK) {
 						if (move_status_b == false && move_possible == false) {
@@ -509,7 +520,8 @@ public class GameGUI extends javafx.application.Application {
 				}
 			}
 			othelloPane.UpdatePane(gameBoard);
-        } 
+		} 
+		// Commented out as we removed different difficulties due to bugs
         // else if(difficult == "MEDIUM"){ // Medium level AI ------------------------------------------------------------
 		// 	if (aTurn == TokenColor.BLACK) {
 		// 		move_status_b = false;
@@ -602,9 +614,5 @@ public class GameGUI extends javafx.application.Application {
 		// 	}
         //     othelloPane.UpdatePane(gameBoard);
 		// }
-	}
-	
-	public static void main(String[] args) {
-		launch(args);
 	}
 }

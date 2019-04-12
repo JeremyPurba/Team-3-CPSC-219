@@ -8,7 +8,8 @@ public class GameCell{
     int column;
 
     /**
-     * method to place player game peices on board
+     * Result of method: Place appropriate token on gameboard for what needs to be in the cell.
+     * (Console version)
      */
     public void draw(){
         if(aColor == TokenColor.BLACK){
@@ -21,14 +22,14 @@ public class GameCell{
     }
 
     /**
-     * method to clear gameCell of color and set to default blank value
+     * Result of method: to clear gameCell of color and set to default blank value
      */
     public void clear(){
         aColor = TokenColor.BLANK;
     }
 
     /**
-     * Sets color to given token color
+     * Result of method: Sets color to given token color
      * @param value of type TokenColor
      */
     public void set(TokenColor value){
@@ -36,7 +37,7 @@ public class GameCell{
     }
 
     /**
-     * Method to get the color in a specific cell
+     * Result of method: to get the color in a specific cell
      * @return aColor of type TokenColor
      */
     public TokenColor get(){
@@ -44,7 +45,7 @@ public class GameCell{
     }
 
     /**
-     * Constructor to clear given cell's color based on coordinates
+     * Result of constructor: to clear given cell's color based on coordinates
      * @param roww of type int
      * @param col of type int
      */
